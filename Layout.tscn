@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://PageFrame.tscn" type="PackedScene" id=1]
+
+[node name="Layout" type="Node2D"]
+
+[node name="Background" type="ColorRect" parent="."]
+margin_left = -10.0
+margin_top = 2.0
+margin_right = 1649.0
+margin_bottom = 1166.0
+rect_min_size = Vector2( 1000, 1000 )
+color = Color( 0.768627, 0.768627, 0.768627, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PageFrame" parent="." instance=ExtResource( 1 )]
+margin_left = 232.0
+margin_top = 20.0
+margin_right = 906.0
+margin_bottom = 632.0
+rect_scale = Vector2( 2, 2 )
