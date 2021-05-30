@@ -9,6 +9,7 @@ rect_min_size = Vector2( 600, 600 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
 theme = ExtResource( 1 )
+show_line_numbers = true
 wrap_enabled = true
 __meta__ = {
 "_edit_use_anchors_": false

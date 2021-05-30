@@ -16,8 +16,8 @@ __meta__ = {
 }
 
 [node name="PageFrame" parent="." instance=ExtResource( 1 )]
-margin_left = 232.0
+margin_left = 184.0
 margin_top = 20.0
-margin_right = 906.0
+margin_right = 858.0
 margin_bottom = 632.0
-rect_scale = Vector2( 2, 2 )
+rect_scale = Vector2( 2, 1.25 )
