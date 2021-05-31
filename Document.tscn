@@ -9,8 +9,6 @@ margin_left = 3.77554
 margin_top = 33.2245
 margin_right = 1491.78
 margin_bottom = 588.224
-grow_horizontal = 0
-grow_vertical = 0
 custom_styles/bg = ExtResource( 2 )
 script = ExtResource( 4 )
 __meta__ = {
@@ -27,6 +25,5 @@ __meta__ = {
 
 [node name="Line1" parent="VBoxContainer" instance=ExtResource( 1 )]
 max_length = 110
-expand_to_text_length = true
 caret_blink = true
 caret_blink_speed = 0.5

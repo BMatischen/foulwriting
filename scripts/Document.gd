@@ -26,21 +26,23 @@ func write_new_text(text):
 			$VBoxContainer.add_child(newline)
 			line = get_node("VBoxContainer/Line" + str(newest_line))
 			text_length = 0
+			line.editable = false
 		line.add_character(c)
 		text_length += 1
 		current_pos_in_text += 1
 		var pause = rand_range(0.0005, 0.001)
 		yield(get_tree().create_timer(pause), "timeout")
 	line.set_target_text(line.text)
+	line.editable = true
 	get_tree().current_scene.get_node("Typer").scan_document()
 
 
-func add_to_line(line, start):
-	var subtext = line.get_target_text().substr(start, line.get_target_text().length())
-	for c in subtext:
-		line.text += c
-		var pause = rand_range(0.005, 0.1)
-		yield(get_tree().create_timer(pause), "timeout")
+#func add_to_line(line, start):
+#	var subtext = line.get_target_text().substr(start, line.get_target_text().length())
+#	for c in subtext:
+#		line.text += c
+#		var pause = rand_range(0.005, 0.1)
+#		yield(get_tree().create_timer(pause), "timeout")
 
 
 #func remove_bad_chars(line):
@@ -57,18 +59,24 @@ func add_to_line(line, start):
 #		add_to_line(line, j)
 #	else:
 #		print(line.text.substr(j, line.text.length()))
-#		breakpoint
+#
 #		line.text.erase(j, line.text.length()-j)
 
-func edit_line(line):
-	var target_txt = line.get_target_text()
-	var j = 0
-	if line.text.length() != target_txt.length():
-		line.text = ""
-		for c in target_txt:
-			line.text += c
-			var pause = rand_range(0.005, 0.1)
-			yield(get_tree().create_timer(pause), "timeout")
+func edit_lines(lines):
+	while lines.size() > 0:
+		var line = lines.pop_back()
+		line.editable = false
+		get_tree().current_scene.get_node("Typer").find_player(line)
+		var target_txt = line.get_target_text()
+		var j = 0
+		if line.text.length() != target_txt.length():
+			line.text = ""
+			for c in target_txt:
+				line.text += c
+				var pause = 0.0000000005
+				yield(get_tree().create_timer(pause), "timeout")
+		line.editable = true
+	get_tree().current_scene.get_node("Typer").start_timer()
 
 
 func get_line(line_num):

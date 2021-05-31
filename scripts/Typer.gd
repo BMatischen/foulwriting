@@ -36,7 +36,7 @@ Down, down, down. "Di-nah will miss me to-night," Al-ice went on. (Di-nah was th
 	next_pos = 0
 	document = get_tree().current_scene.get_node("Document")
 	state = TYPE
-	write_subtext()
+	write_text_chunk()
 
 func set_target_text(text):
 	target_text = text
@@ -65,7 +65,7 @@ func make_text_to_write():
 	return grammar.flatten('#origin#')
 
 
-func write_subtext():
+func write_text_chunk():
 	var i = (target_text.length()-1)/4
 	next_pos += i
 	var subtext = target_text.substr(curr_pos, next_pos)
@@ -76,18 +76,32 @@ func write_subtext():
 func scan_document():
 	var lines = document.get_changed_lines()
 	if lines != []:
-		var checks = rand_range(1, lines.size())
-		for i in checks:
-			document.edit_line(lines[i])
-	#$IdleWait.start()
+		document.edit_lines(lines)
+	else:
+		start_timer()
+
+
+func find_player(line):
+	var regex = RegEx.new()
+	regex.compile("\\d+")
+	var index = int(regex.search(line.name).get_string())
+	if document.get_line(index).has_player():
+		get_tree().quit()
+#	if index-1 > -1:
+#		if document.get_line(index-1).has_player():
+#			get_tree().quit()
+#	if index+1 < document.get_children_count():
+#		if document.get_line(index+1).has_player():
+#			get_tree().quit()
+
+
+func start_timer():
+	$IdleWait.start()
 
 
 
 func _on_IdleWait_timeout():
-	match state:
-		TYPE:
-			state = CHECK
-			scan_document()
-		CHECK:
-			state = TYPE
-			write_subtext()
+	if curr_pos != target_text.length():
+		write_text_chunk()
+	else:
+		scan_document()
