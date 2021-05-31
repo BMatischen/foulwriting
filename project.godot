@@ -9,18 +9,25 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "StateMachine",
+"language": "GDScript",
+"path": "res://scripts/StateMachine.gd"
+}, {
 "base": "Reference",
 "class": "Tracery",
 "language": "GDScript",
 "path": "res://scripts/tracery.gd"
 } ]
 _global_script_class_icons={
+"StateMachine": "",
 "Tracery": ""
 }
 
 [application]
 
 config/name="documenthijacker"
+run/main_scene="res://Layout.tscn"
 config/icon="res://icon.png"
 
 [physics]
