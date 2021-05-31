@@ -1,5 +1,7 @@
 extends ScrollContainer
 
+signal typing_done
+
 var newest_line
 var curr_line
 onready var linenode = preload("res://Line.tscn")
@@ -13,9 +15,11 @@ func write_new_text(text):
 	var char_limit = line.get_max_length()
 	var text_length = line.get_text().length()
 	var current_pos_in_text = 0
+	line.editable = false
 	for c in text:
 		if text_length >= char_limit:
-			print(line.get_target_text())
+			line.set_target_text(line.text)
+			line.editable = true
 			newest_line += 1
 			var newline = linenode.instance()
 			newline.name = "Line" + str(newest_line)
@@ -25,8 +29,59 @@ func write_new_text(text):
 		line.add_character(c)
 		text_length += 1
 		current_pos_in_text += 1
+		var pause = rand_range(0.0005, 0.001)
+		yield(get_tree().create_timer(pause), "timeout")
+	line.set_target_text(line.text)
+	get_tree().current_scene.get_node("Typer").scan_document()
+
+
+func add_to_line(line, start):
+	var subtext = line.get_target_text().substr(start, line.get_target_text().length())
+	for c in subtext:
+		line.text += c
 		var pause = rand_range(0.005, 0.1)
 		yield(get_tree().create_timer(pause), "timeout")
+
+
+#func remove_bad_chars(line):
+#	#var line = get_line(index)
+#	var j = 0
+#	var target_txt = line.get_target_text()
+#	while j < line.text.length() and j < target_txt.length():
+#		if line.text[j] != target_txt[j]:
+#			line.text.erase(j, 1)
+#			line.text = line.text.insert(j, target_txt[j])
+#		j += 1
+#	if j < target_txt.length():
+#		breakpoint
+#		add_to_line(line, j)
+#	else:
+#		print(line.text.substr(j, line.text.length()))
+#		breakpoint
+#		line.text.erase(j, line.text.length()-j)
+
+func edit_line(line):
+	var target_txt = line.get_target_text()
+	var j = 0
+	if line.text.length() != target_txt.length():
+		line.text = ""
+		for c in target_txt:
+			line.text += c
+			var pause = rand_range(0.005, 0.1)
+			yield(get_tree().create_timer(pause), "timeout")
+
+
+func get_line(line_num):
+	return get_node("VBoxContainer/Line" + str(line_num))
+
+
+func get_changed_lines():
+	var lines = []
+	for i in $VBoxContainer.get_child_count():
+		var line = get_node("VBoxContainer/Line" + str(i+1))
+		if !line.is_not_tampered():
+			lines.append(line)
+	return lines
 
 
 

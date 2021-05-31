@@ -2,7 +2,7 @@ extends LineEdit
 
 
 var _has_player  #Mark if player cursor is on this line
-var _target_text
+var _target_text setget set_target_text, get_target_text
 
 
 # Called when the node enters the scene tree for the first time.
@@ -31,3 +31,11 @@ func add_character(c):
 func get_target_text():
 	return _target_text
 
+
+func set_target_text(text):
+	_target_text = text
+
+
+# Check if actual text in line matches expected text
+func is_not_tampered():
+	return self.text == _target_text
