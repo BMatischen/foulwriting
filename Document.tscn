@@ -7,8 +7,9 @@
 [node name="Document" type="ScrollContainer"]
 margin_left = 3.77554
 margin_top = 33.2245
-margin_right = 1491.78
+margin_right = 1503.78
 margin_bottom = 588.224
+rect_min_size = Vector2( 1500, 550 )
 custom_styles/bg = ExtResource( 2 )
 script = ExtResource( 4 )
 __meta__ = {

@@ -34,7 +34,7 @@ Down, down, down. "Di-nah will miss me to-night," Al-ice went on. (Di-nah was th
 	
 	curr_pos = 0
 	next_pos = 0
-	document = get_tree().current_scene.get_node("Document")
+	document = get_tree().current_scene.get_node("AIDoc")
 	state = TYPE
 	write_text_chunk()
 

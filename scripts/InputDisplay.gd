@@ -1,9 +1,8 @@
 extends ScrollContainer
 
 
-const SIZE = 10  # Number of keyboard QTEs to complete
-
-var inputs  # Array of QTE inputs
+#var size # Number of keyboard QTEs to complete
+var inputs # Array of QTE inputs
 var active  # Flag for if keyboard input should be handled (this node is visible)
 var font = get_font("ThemeFont")
 var actions = {
@@ -15,10 +14,13 @@ var actions = {
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	pass
+
+func select_actions(size):
 	randomize()
 	inputs = []
 	var j = 1
-	while j <= SIZE:
+	while j <= size:
 		var action_name = get_random_input()
 		var label = Label.new()
 		label.text = actions[action_name]
@@ -42,6 +44,9 @@ func is_correct_input(event):
 			return true
 	return false
 
+
+func count_remaining_inputs():
+	return inputs.size()
 
 func set_active():
 	active = !active

@@ -90,11 +90,3 @@ func get_changed_lines():
 		if !line.is_not_tampered():
 			lines.append(line)
 	return lines
-
-
-
-
-
-
-
-

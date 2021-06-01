@@ -5,7 +5,11 @@
 [ext_resource path="res://InputDisplay.tscn" type="PackedScene" id=3]
 
 [node name="PageFrame" type="ScrollContainer"]
-rect_min_size = Vector2( 650, 500 )
+margin_left = -77.781
+margin_top = -0.967712
+margin_right = 1498.22
+margin_bottom = 767.032
+rect_min_size = Vector2( 1500, 770 )
 scroll_horizontal_enabled = false
 script = ExtResource( 2 )
 __meta__ = {
@@ -13,19 +17,24 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_right = 500.0
-margin_bottom = 304.0
+margin_right = 1500.0
+margin_bottom = 714.0
 alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Page" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_right = 500.0
-margin_bottom = 300.0
-rect_min_size = Vector2( 500, 300 )
+margin_right = 1500.0
+margin_bottom = 710.0
+rect_min_size = Vector2( 1500, 710 )
+show_line_numbers = false
 context_menu_enabled = false
 shortcut_keys_enabled = false
 virtual_keyboard_enabled = false
+selecting_enabled = false
 
 [node name="InputDisplay" parent="VBoxContainer" instance=ExtResource( 3 )]
-margin_top = 304.0
-margin_right = 500.0
-margin_bottom = 304.0
+margin_top = 714.0
+margin_right = 1500.0
+margin_bottom = 714.0
