@@ -11,6 +11,7 @@ size_flags_vertical = 2
 theme = ExtResource( 1 )
 show_line_numbers = true
 wrap_enabled = true
+caret_blink = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

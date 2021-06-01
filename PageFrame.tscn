@@ -1,33 +1,31 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Page.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scripts/PageFrame.gd" type="Script" id=2]
+[ext_resource path="res://InputDisplay.tscn" type="PackedScene" id=3]
 
 [node name="PageFrame" type="ScrollContainer"]
 rect_min_size = Vector2( 650, 500 )
+scroll_horizontal_enabled = false
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_right = 600.0
-margin_bottom = 1808.0
+margin_right = 500.0
+margin_bottom = 304.0
 alignment = 1
 
-[node name="Page1" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_right = 600.0
-margin_bottom = 600.0
+[node name="Page" parent="VBoxContainer" instance=ExtResource( 1 )]
+margin_right = 500.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 500, 300 )
 context_menu_enabled = false
 shortcut_keys_enabled = false
 virtual_keyboard_enabled = false
 
-[node name="Page2" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 604.0
-margin_right = 600.0
-margin_bottom = 1204.0
-
-[node name="Page3" parent="VBoxContainer" instance=ExtResource( 1 )]
-margin_top = 1208.0
-margin_right = 600.0
-margin_bottom = 1808.0
+[node name="InputDisplay" parent="VBoxContainer" instance=ExtResource( 3 )]
+margin_top = 304.0
+margin_right = 500.0
+margin_bottom = 304.0
