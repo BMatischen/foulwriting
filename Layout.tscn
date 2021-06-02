@@ -21,20 +21,23 @@ __meta__ = {
 }
 
 [node name="DocSwitch" type="Button" parent="."]
-margin_left = 800.903
-margin_top = 10.6787
-margin_right = 1071.9
-margin_bottom = 67.6787
+margin_left = -187.757
+margin_top = 708.046
+margin_right = 121.243
+margin_bottom = 758.046
+rect_scale = Vector2( 1.5, 1.5 )
+theme = ExtResource( 4 )
 shortcut_in_tooltip = false
+text = "Switch to Writing Mode"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="AIDoc" parent="." instance=ExtResource( 1 )]
-margin_left = 320.923
-margin_top = 77.0
-margin_right = 1820.92
-margin_bottom = 779.0
+margin_left = 313.0
+margin_top = 35.0
+margin_right = 1822.0
+margin_bottom = 749.0
 rect_scale = Vector2( 1.1, 1 )
 
 [node name="Typer" parent="." instance=ExtResource( 2 )]
@@ -45,40 +48,54 @@ current = true
 zoom = Vector2( 1.5, 1.1 )
 
 [node name="PageFrame" parent="." instance=ExtResource( 3 )]
-margin_left = 322.592
-margin_top = 73.6697
-margin_right = 1831.59
-margin_bottom = 855.669
+margin_left = 313.0
+margin_top = 36.2942
+margin_right = 1822.0
+margin_bottom = 818.294
 rect_scale = Vector2( 1.1, 1 )
 
-[node name="TamperLbl" type="Label" parent="."]
-margin_left = -72.0
-margin_top = 155.0
-margin_right = 170.0
-margin_bottom = 240.0
+[node name="LabelContainer" type="VBoxContainer" parent="."]
+margin_left = -154.231
+margin_top = 61.1265
+margin_right = 45.7691
+margin_bottom = 369.127
+rect_scale = Vector2( 2, 2 )
+size_flags_horizontal = 2
+size_flags_vertical = 2
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="TamperLbl" type="Label" parent="LabelContainer"]
+margin_right = 200.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 200, 100 )
 theme = ExtResource( 4 )
-clip_text = true
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Score" type="Label" parent="."]
-margin_left = -55.3845
-margin_top = 336.556
-margin_right = 141.615
-margin_bottom = 451.556
+[node name="Score" type="Label" parent="LabelContainer"]
+margin_top = 104.0
+margin_right = 200.0
+margin_bottom = 204.0
+rect_min_size = Vector2( 200, 100 )
 theme = ExtResource( 4 )
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="QTECounter" type="Label" parent="."]
-margin_left = -52.7148
-margin_top = 555.47
-margin_right = 144.285
-margin_bottom = 670.47
+[node name="QTECounter" type="Label" parent="LabelContainer"]
+margin_top = 208.0
+margin_right = 200.0
+margin_bottom = 308.0
+rect_min_size = Vector2( 200, 100 )
 theme = ExtResource( 4 )
 text = "vvbnvnvvnb"
+autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

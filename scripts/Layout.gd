@@ -14,9 +14,9 @@ func _ready():
 	chars_left = $PageFrame.get_inputs_left()
 	is_tamper = true
 	$DocSwitch.text = "Switch to Writing Mode"
-	$TamperLbl.text = "Document Tampered:\n" + str(ratio_tampered)
-	$Score.text = "Total Score:\n" + str(score)
-	$QTECounter.text = "Characters Left to type:\n" + str(chars_left)
+	$LabelContainer/TamperLbl.text = "Document Tampered:\n" + str(ratio_tampered)
+	$LabelContainer/Score.text = "Total Score:\n" + str(score)
+	$LabelContainer/QTECounter.text = "Characters To Type:\n" + str(chars_left)
 
 
 func _on_DocSwitch_pressed():
@@ -33,11 +33,11 @@ func _on_DocSwitch_pressed():
 
 func _on_Typer_lines_tampered(changed, total):
 	ratio_tampered = (float(changed)/float(total))
-	$TamperLbl.text = "Document Tampered:\n" + str(int(ratio_tampered*100)) + "%"
+	$LabelContainer/TamperLbl.text = "Document Tampered:\n" + str(int(ratio_tampered*100)) + "%"
 	score += int(10 * ratio_tampered)
-	$Score.text = "Total Score: " + str(score)
+	$LabelContainer/Score.text = "Total Score: " + str(score)
 
 
 func _on_PageFrame_qte_complete():
 	chars_left -= 1
-	$QTECounter.text = "Characters Left to type:\n" + str(chars_left)
+	$LabelContainer/QTECounter.text = "Characters Left to type:\n" + str(chars_left)
