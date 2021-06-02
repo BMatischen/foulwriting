@@ -2,7 +2,7 @@ extends Node
 
 class_name StateMachine
 
-var state = null
+var state = null setget set_state
 var previous_state = null
 var states = {}
 
@@ -15,17 +15,27 @@ func _physics_process(delta):
 		if transition != null:
 			set_state(transition)
 
+
 func _state_logic(delta):
-	pass
+	if state == states.type:
+		parent.write_subtext()
+	elif state == states.check:
+		parent.scan_document()
+	else:
+		pass
+
 
 func _get_transition(delta):
-	return null
+	pass
+
 
 func _enter_state(new_state, old_state):
 	pass
 
+
 func _exit_state(old_state, new_state):
 	pass
+
 
 func set_state(new_state):
 	previous_state = state

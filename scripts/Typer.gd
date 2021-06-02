@@ -1,7 +1,8 @@
 extends Node2D
 
-signal unwanted_change_found
+signal lines_tampered
 signal state_change
+
 var tracery_class = load("res://scripts/tracery.gd")
 var document
 
@@ -76,6 +77,7 @@ func write_text_chunk():
 func scan_document():
 	var lines = document.get_changed_lines()
 	if lines != []:
+		emit_signal("lines_tampered", lines.size(), document.count_lines())
 		document.edit_lines(lines)
 	else:
 		start_timer()

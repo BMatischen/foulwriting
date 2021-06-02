@@ -82,6 +82,9 @@ func edit_lines(lines):
 func get_line(line_num):
 	return get_node("VBoxContainer/Line" + str(line_num))
 
+func count_lines():
+	return get_node("VBoxContainer").get_child_count()
+
 
 func get_changed_lines():
 	var lines = []

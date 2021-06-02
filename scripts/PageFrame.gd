@@ -1,5 +1,6 @@
 extends ScrollContainer
 
+signal qte_complete
 var tracery_class = load("res://scripts/tracery.gd")
 onready var qte_controller = $VBoxContainer/InputDisplay
 onready var page = $VBoxContainer/Page
@@ -39,17 +40,13 @@ func make_text():
 	return body.substr(body.length()-SIZE)
 
 
-func _unhandled_input(event):
-	if event is InputEventKey and event.is_pressed():
+func _unhandled_key_input(event):
+	if event.is_pressed():
 		var is_pass = qte_controller.is_correct_input(event)
 		if is_pass:
 			page.text += text[curr_loc]
 			curr_loc += 1
+			emit_signal("qte_complete")
 
-
-func _on_DocSwitch_pressed():
-	if self.visible:
-		set_process_unhandled_input(false)
-	else:
-		set_process_unhandled_input(true)
-	self.visible = !self.visible
+func get_inputs_left():
+	return qte_controller.count_remaining_inputs()

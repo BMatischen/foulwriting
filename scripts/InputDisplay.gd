@@ -3,7 +3,6 @@ extends ScrollContainer
 
 #var size # Number of keyboard QTEs to complete
 var inputs # Array of QTE inputs
-var active  # Flag for if keyboard input should be handled (this node is visible)
 var font = get_font("ThemeFont")
 var actions = {
 	"UP": "^",
@@ -24,11 +23,26 @@ func select_actions(size):
 		var action_name = get_random_input()
 		var label = Label.new()
 		label.text = actions[action_name]
-		label.add_font_override("font", font)
+		#label.add_font_override("font", font)
+		if (inputs == []):
+			pass
+			#var stylebox = label.get_stylebox("Theme").duplicate()
+#			var stylebox = StyleBoxFlat.new()
+#			stylebox.set_bg_color(Color(16, 216, 237, 255))
+#			#var stylebox = label.get_stylebox("Theme", "Label")
+#			print(stylebox)
+#			label.add_stylebox_override("new_styleboxflat", stylebox)
+#			update()
+#			stylebox.border_color = Color(16, 216, 237, 255) 
+#			label.set_stylebox(stylebox)
+			#stylebox.set_bg_color(Color(16, 216, 237, 255))
+			#stylebox.set_bg_color(Color(16, 216, 237, 255))
+			#label.add_stylebox_override("new_styleboxflat", stylebox)
+			#stylebox.set_bg_color(Color(16, 216, 237, 255))
+		#label.add_styles_override("normal/bg_color", Color(16, 216, 237, 255))
 		inputs.append(label)
 		$HBoxContainer.add_child(label)
 		j += 1
-	active = true
 
 
 # Get random input string for random action
@@ -47,12 +61,5 @@ func is_correct_input(event):
 
 func count_remaining_inputs():
 	return inputs.size()
-
-func set_active():
-	active = !active
-
-
-func is_active():
-	return active
 
 
