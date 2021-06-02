@@ -101,5 +101,5 @@ __meta__ = {
 }
 
 [connection signal="pressed" from="DocSwitch" to="." method="_on_DocSwitch_pressed"]
-[connection signal="lines_tampered" from="Typer" to="." method="_on_Typer_lines_tampered"]
+[connection signal="update_tamper_count" from="AIDoc" to="." method="_on_AIDoc_update_tamper_count"]
 [connection signal="qte_complete" from="PageFrame" to="." method="_on_PageFrame_qte_complete"]

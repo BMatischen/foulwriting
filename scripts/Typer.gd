@@ -36,7 +36,7 @@ Down, down, down. "Di-nah will miss me to-night," Al-ice went on. (Di-nah was th
 	curr_pos = 0
 	next_pos = 0
 	document = get_tree().current_scene.get_node("AIDoc")
-	state = TYPE
+	#state = TYPE
 	write_text_chunk()
 
 func set_target_text(text):
@@ -77,7 +77,7 @@ func write_text_chunk():
 func scan_document():
 	var lines = document.get_changed_lines()
 	if lines != []:
-		emit_signal("lines_tampered", lines.size(), document.count_lines())
+		#emit_signal("lines_tampered", lines.size(), document.count_lines())
 		document.edit_lines(lines)
 	else:
 		start_timer()

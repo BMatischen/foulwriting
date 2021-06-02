@@ -31,13 +31,14 @@ func _on_DocSwitch_pressed():
 		$PageFrame.visible = false
 
 
-func _on_Typer_lines_tampered(changed, total):
-	ratio_tampered = (float(changed)/float(total))
-	$LabelContainer/TamperLbl.text = "Document Tampered:\n" + str(int(ratio_tampered*100)) + "%"
-	score += int(10 * ratio_tampered)
-	$LabelContainer/Score.text = "Total Score: " + str(score)
-
-
 func _on_PageFrame_qte_complete():
 	chars_left -= 1
 	$LabelContainer/QTECounter.text = "Characters Left to type:\n" + str(chars_left)
+
+
+func _on_AIDoc_update_tamper_count(changed, total, is_tamper=true):
+	ratio_tampered = (float(changed)/float(total))
+	$LabelContainer/TamperLbl.text = "Document Tampered:\n" + str(int(ratio_tampered*100)) + "%"
+	if (is_tamper):
+		score += int(10 * ratio_tampered)
+		$LabelContainer/Score.text = "Total Score: " + str(score)
