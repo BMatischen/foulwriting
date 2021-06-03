@@ -32,7 +32,6 @@ func write_new_text(text):
 			line = get_node("VBoxContainer/Line" + str(newest_line))
 			text_length = 0
 			line.editable = false
-			emit_signal("update_tamper_count", lines_tampered, count_lines(), false)
 		line.add_character(c)
 		text_length += 1
 		current_pos_in_text += 1

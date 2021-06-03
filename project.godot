@@ -21,7 +21,7 @@ _global_script_class_icons={
 [application]
 
 config/name="documenthijacker"
-run/main_scene="res://Layout.tscn"
+run/main_scene="res://StartScreen.tscn"
 config/icon="res://icon.png"
 
 [input]

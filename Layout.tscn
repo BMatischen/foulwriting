@@ -1,17 +1,20 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Document.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Typer.tscn" type="PackedScene" id=2]
 [ext_resource path="res://PageFrame.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Theme.tres" type="Theme" id=4]
+[ext_resource path="res://scripts/GameTimer.gd" type="Script" id=5]
 [ext_resource path="res://scripts/Layout.gd" type="Script" id=6]
+[ext_resource path="res://scripts/GameOver.gd" type="Script" id=7]
 
 [node name="Layout" type="Node2D"]
+pause_mode = 1
 script = ExtResource( 6 )
 
 [node name="Background" type="ColorRect" parent="."]
 margin_left = -354.0
-margin_top = 2.0
+margin_top = -100.0
 margin_right = 2261.0
 margin_bottom = 1166.0
 rect_min_size = Vector2( 1000, 1000 )
@@ -21,10 +24,10 @@ __meta__ = {
 }
 
 [node name="DocSwitch" type="Button" parent="."]
-margin_left = -187.757
-margin_top = 708.046
-margin_right = 121.243
-margin_bottom = 758.046
+margin_left = 884.647
+margin_top = 781.999
+margin_right = 1193.65
+margin_bottom = 831.999
 rect_scale = Vector2( 1.5, 1.5 )
 theme = ExtResource( 4 )
 shortcut_in_tooltip = false
@@ -35,30 +38,22 @@ __meta__ = {
 
 [node name="AIDoc" parent="." instance=ExtResource( 1 )]
 margin_left = 313.0
-margin_top = 35.0
+margin_top = 0.0
 margin_right = 1822.0
-margin_bottom = 749.0
+margin_bottom = 714.0
 rect_scale = Vector2( 1.1, 1 )
-
-[node name="Typer" parent="." instance=ExtResource( 2 )]
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2( 848.971, 435.948 )
-current = true
-zoom = Vector2( 1.5, 1.1 )
 
 [node name="PageFrame" parent="." instance=ExtResource( 3 )]
 margin_left = 313.0
-margin_top = 36.2942
+margin_top = 0.0
 margin_right = 1822.0
-margin_bottom = 818.294
+margin_bottom = 781.999
 rect_scale = Vector2( 1.1, 1 )
 
 [node name="LabelContainer" type="VBoxContainer" parent="."]
 margin_left = -154.231
-margin_top = 61.1265
 margin_right = 45.7691
-margin_bottom = 369.127
+margin_bottom = 412.0
 rect_scale = Vector2( 2, 2 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
@@ -67,17 +62,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TamperLbl" type="Label" parent="LabelContainer"]
+[node name="TimeLeft" type="Label" parent="LabelContainer"]
 margin_right = 200.0
 margin_bottom = 100.0
 rect_min_size = Vector2( 200, 100 )
 theme = ExtResource( 4 )
+text = "vvbnvnvvnb"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Score" type="Label" parent="LabelContainer"]
+[node name="TamperLbl" type="Label" parent="LabelContainer"]
 margin_top = 104.0
 margin_right = 200.0
 margin_bottom = 204.0
@@ -100,6 +96,101 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Score" type="Label" parent="LabelContainer"]
+margin_top = 312.0
+margin_right = 200.0
+margin_bottom = 412.0
+rect_min_size = Vector2( 200, 100 )
+theme = ExtResource( 4 )
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Typer" parent="." instance=ExtResource( 2 )]
+
+[node name="GameTimer" type="Timer" parent="."]
+script = ExtResource( 5 )
+count = 5
+
+[node name="GameOver" type="Node2D" parent="."]
+pause_mode = 2
+visible = false
+script = ExtResource( 7 )
+
+[node name="GameOverBg" type="ColorRect" parent="GameOver"]
+margin_left = -354.0
+margin_top = -100.0
+margin_right = 2261.0
+margin_bottom = 1166.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LabelBox" type="VBoxContainer" parent="GameOver"]
+margin_left = -111.786
+margin_top = 33.0
+margin_right = 908.214
+margin_bottom = 625.0
+rect_scale = Vector2( 1.5, 1.5 )
+theme = ExtResource( 4 )
+custom_constants/separation = 20
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResultLbl" type="Label" parent="GameOver/LabelBox"]
+margin_right = 1020.0
+margin_bottom = 33.0
+
+[node name="SubResultLbl" type="Label" parent="GameOver/LabelBox"]
+margin_top = 53.0
+margin_right = 1020.0
+margin_bottom = 86.0
+
+[node name="RatioLbl" type="Label" parent="GameOver/LabelBox"]
+margin_top = 106.0
+margin_right = 1020.0
+margin_bottom = 139.0
+
+[node name="CharsLbl" type="Label" parent="GameOver/LabelBox"]
+margin_top = 159.0
+margin_right = 1020.0
+margin_bottom = 192.0
+
+[node name="ScoreLbl" type="Label" parent="GameOver/LabelBox"]
+margin_top = 212.0
+margin_right = 1020.0
+margin_bottom = 245.0
+
+[node name="ButtonBox" type="HBoxContainer" parent="GameOver/LabelBox"]
+margin_top = 265.0
+margin_right = 1020.0
+margin_bottom = 306.0
+custom_constants/separation = 50
+alignment = 1
+
+[node name="RetryBtn" type="Button" parent="GameOver/LabelBox/ButtonBox"]
+margin_left = 401.0
+margin_right = 504.0
+margin_bottom = 41.0
+text = "Restart"
+
+[node name="QuitBtn" type="Button" parent="GameOver/LabelBox/ButtonBox"]
+margin_left = 554.0
+margin_right = 618.0
+margin_bottom = 41.0
+text = "Back to Title Screen"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 848.971, 435.948 )
+current = true
+zoom = Vector2( 1.5, 1.1 )
+
 [connection signal="pressed" from="DocSwitch" to="." method="_on_DocSwitch_pressed"]
 [connection signal="update_tamper_count" from="AIDoc" to="." method="_on_AIDoc_update_tamper_count"]
 [connection signal="qte_complete" from="PageFrame" to="." method="_on_PageFrame_qte_complete"]
+[connection signal="count_complete" from="GameTimer" to="." method="_on_GameTimer_count_complete"]
+[connection signal="timeout" from="GameTimer" to="GameTimer" method="_on_GameTimer_timeout"]
+[connection signal="pressed" from="GameOver/LabelBox/ButtonBox/RetryBtn" to="GameOver" method="_on_RetryBtn_pressed"]
+[connection signal="pressed" from="GameOver/LabelBox/ButtonBox/QuitBtn" to="GameOver" method="_on_QuitBtn_pressed"]

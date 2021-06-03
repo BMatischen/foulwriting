@@ -1,7 +1,7 @@
 extends Node2D
 
 
-const TAMPER_MIN = 0.4  # Min tamper percentage target to win
+const TAMPER_MIN = 0.5  # Min tamper percentage target to win
 var is_tamper
 var ratio_tampered
 var score
@@ -9,6 +9,7 @@ var chars_left
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	get_tree().paused = false
 	ratio_tampered = 0.0
 	score = 0
 	chars_left = $PageFrame.get_inputs_left()
@@ -17,6 +18,7 @@ func _ready():
 	$LabelContainer/TamperLbl.text = "Document Tampered:\n" + str(ratio_tampered)
 	$LabelContainer/Score.text = "Total Score:\n" + str(score)
 	$LabelContainer/QTECounter.text = "Characters To Type:\n" + str(chars_left)
+	$GameTimer.start()
 
 
 func _on_DocSwitch_pressed():
@@ -42,3 +44,10 @@ func _on_AIDoc_update_tamper_count(changed, total, is_tamper=true):
 	if (is_tamper):
 		score += int(10 * ratio_tampered)
 		$LabelContainer/Score.text = "Total Score: " + str(score)
+
+
+
+
+func _on_GameTimer_count_complete():
+	var data = {"ratio_tampered": ratio_tampered, "required_ratio": TAMPER_MIN ,"score": score, "chars_left": chars_left}
+	$GameOver.display_results(data)
