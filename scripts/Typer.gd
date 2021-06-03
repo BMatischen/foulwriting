@@ -88,14 +88,7 @@ func find_player(line):
 	var index = int(regex.search(line.name).get_string())
 	if document.get_line(index).has_player():
 		suspect_line_num = index
-		$SpotTimer.start()
-#	if index-1 > -1:
-#		if document.get_line(index-1).has_player():
-#		if document.get_line(index-1).has_player():
-#			get_tree().quit()
-#	if index+1 < document.get_children_count():
-#		if document.get_line(index+1).has_player():
-#			get_tree().quit()
+		$SpotTimer.start_countdown()
 
 
 func start_idle():
@@ -110,7 +103,9 @@ func _on_IdleWait_timeout():
 		scan_document()
 
 
-# If player still on line after first detection, they are spotted
-func _on_SpotTimer_timeout():
+func _on_SpotTimer_count_complete():
 	if document.get_line(suspect_line_num).has_player():
 		emit_signal("spotted")
+	else:
+		suspect_line_num = null
+		$SpotTimer.reset_status()

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://scripts/Typer.gd" type="Script" id=1]
+[ext_resource path="res://scripts/SpotTimer.gd" type="Script" id=2]
 
 [node name="Typer" type="Node2D"]
 script = ExtResource( 1 )
@@ -9,7 +10,9 @@ script = ExtResource( 1 )
 one_shot = true
 
 [node name="SpotTimer" type="Timer" parent="."]
-one_shot = true
+wait_time = 0.5
+script = ExtResource( 2 )
 
 [connection signal="timeout" from="IdleWait" to="." method="_on_IdleWait_timeout"]
-[connection signal="timeout" from="SpotTimer" to="." method="_on_SpotTimer_timeout"]
+[connection signal="count_complete" from="SpotTimer" to="." method="_on_SpotTimer_count_complete"]
+[connection signal="timeout" from="SpotTimer" to="SpotTimer" method="_on_SpotTimer_timeout"]

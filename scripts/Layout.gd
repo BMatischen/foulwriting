@@ -8,10 +8,7 @@ var score
 var chars_left
 
 onready var tamper_meter = $HUDContainer/TamperBox/TamperMeter
-onready var tamper_lbl = $HUDContainer/TamperBox/TamperLbl
-onready var qte_lbl = $HUDContainer/QTEBox/QTELbl
 onready var qte_meter = $HUDContainer/QTEBox/QTEMeter
-onready var time_lbl = $HUDContainer/TimeBox/TimeLbl
 onready var time_meter = $HUDContainer/TimeBox/TimeMeter
 onready var score_lbl = $HUDContainer/ScoreLbl
 onready var doc_switch = $HUDContainer/DocSwitch
@@ -23,13 +20,13 @@ func _ready():
 	score = 0
 	chars_left = $PageFrame.get_inputs_left()
 	is_tamper = true
-	doc_switch.text = "Switch to Writing Mode"
 	tamper_meter.value = ratio_tampered
 	qte_meter.value = 0
 	qte_meter.max_value = chars_left
 	time_meter.value = $GameTimer.count
 	time_meter.max_value = time_meter.value
 	score_lbl.text = "Score: " + str(score)
+	doc_switch.text = "Switch to Writing Mode"
 	$GameTimer.start()
 
 
