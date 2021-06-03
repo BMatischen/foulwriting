@@ -71,9 +71,6 @@ func edit_lines(lines):
 	while lines.size() > 0:
 		var line = lines.pop_back()
 		line.editable = false
-#		var regex = RegEx.new()
-#		regex.compile("\\d+")
-#		var index = int(regex.search(line.name).get_string())
 		get_tree().current_scene.get_node("Typer").find_player(line)
 		var target_txt = line.get_target_text()
 		var j = 0

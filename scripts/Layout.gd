@@ -7,29 +7,41 @@ var ratio_tampered
 var score
 var chars_left
 
+onready var tamper_meter = $HUDContainer/TamperBox/TamperMeter
+onready var tamper_lbl = $HUDContainer/TamperBox/TamperLbl
+onready var qte_lbl = $HUDContainer/QTEBox/QTELbl
+onready var qte_meter = $HUDContainer/QTEBox/QTEMeter
+onready var time_lbl = $HUDContainer/TimeBox/TimeLbl
+onready var time_meter = $HUDContainer/TimeBox/TimeMeter
+onready var score_lbl = $HUDContainer/ScoreLbl
+onready var doc_switch = $HUDContainer/DocSwitch
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	get_tree().paused = false
-	ratio_tampered = 0.0
+	ratio_tampered = 0
 	score = 0
 	chars_left = $PageFrame.get_inputs_left()
 	is_tamper = true
-	$DocSwitch.text = "Switch to Writing Mode"
-	$LabelContainer/TamperLbl.text = "Document Tampered:\n" + str(ratio_tampered)
-	$LabelContainer/Score.text = "Total Score:\n" + str(score)
-	$LabelContainer/QTECounter.text = "Characters To Type:\n" + str(chars_left)
+	doc_switch.text = "Switch to Writing Mode"
+	tamper_meter.value = ratio_tampered
+	qte_meter.value = 0
+	qte_meter.max_value = chars_left
+	time_meter.value = $GameTimer.count
+	time_meter.max_value = time_meter.value
+	score_lbl.text = "Score: " + str(score)
 	$GameTimer.start()
 
 
 func _on_DocSwitch_pressed():
 	is_tamper = !is_tamper
 	if is_tamper == false:
-		$DocSwitch.text = "Switch to Tamper Mode"
+		doc_switch.text = "Switch to Tamper Mode"
 		$AIDoc.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		$PageFrame.set_process_unhandled_key_input(true)
 		$PageFrame.visible = true
 	else:
-		$DocSwitch.text = "Switch to Writing Mode"
+		doc_switch.text = "Switch to Writing Mode"
 		$AIDoc.mouse_filter = Control.MOUSE_FILTER_STOP
 		$PageFrame.set_process_unhandled_key_input(false)
 		$PageFrame.visible = false
@@ -37,16 +49,16 @@ func _on_DocSwitch_pressed():
 
 func _on_PageFrame_qte_complete():
 	chars_left -= 1
-	$LabelContainer/QTECounter.text = "Characters Left to type:\n" + str(chars_left)
+	qte_meter.value += 1
+#	$LabelContainer/QTECounter.text = "Characters to Type:\n" + str(chars_left)
 
 
 func _on_AIDoc_update_tamper_count(changed, total, is_tamper=true):
 	ratio_tampered = (float(changed)/float(total))
-	$LabelContainer/TamperLbl.text = "Document Tampered:\n" + str(int(ratio_tampered*100)) + "%"
+	tamper_meter.value = int(ratio_tampered*100)
 	if (is_tamper):
 		score += int(10 * ratio_tampered)
-		$LabelContainer/Score.text = "Total Score: " + str(score)
-
+		score_lbl.text = "Score: " + str(score)
 
 
 

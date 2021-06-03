@@ -11,6 +11,7 @@ margin_right = 1498.22
 margin_bottom = 767.032
 rect_min_size = Vector2( 1500, 770 )
 scroll_horizontal_enabled = false
+scroll_vertical_enabled = false
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false

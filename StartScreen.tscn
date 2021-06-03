@@ -29,33 +29,33 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 margin_right = 894.0
-margin_bottom = 33.0
+margin_bottom = 40.0
 text = "Foul Writing"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 133.0
+margin_top = 140.0
 margin_right = 894.0
-margin_bottom = 174.0
+margin_bottom = 188.0
 custom_constants/separation = 50
 alignment = 1
 
 [node name="PlayBtn" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 255.0
-margin_right = 319.0
-margin_bottom = 41.0
+margin_left = 227.0
+margin_right = 303.0
+margin_bottom = 48.0
 text = "Play"
 
 [node name="InstructBtn" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 369.0
-margin_right = 524.0
-margin_bottom = 41.0
+margin_left = 353.0
+margin_right = 541.0
+margin_bottom = 48.0
 text = "How to Play"
 
 [node name="QuitBtn" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 574.0
-margin_right = 638.0
-margin_bottom = 41.0
+margin_left = 591.0
+margin_right = 667.0
+margin_bottom = 48.0
 text = "Quit"
 
 [node name="Camera2D" type="Camera2D" parent="."]

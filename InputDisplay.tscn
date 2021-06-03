@@ -12,6 +12,7 @@ margin_bottom = 73.0
 rect_scale = Vector2( 2, 2 )
 theme = ExtResource( 2 )
 custom_styles/bg = SubResource( 1 )
+scroll_horizontal_enabled = false
 scroll_vertical_enabled = false
 script = ExtResource( 1 )
 __meta__ = {
