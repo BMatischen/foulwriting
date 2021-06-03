@@ -15,19 +15,26 @@ func display_results(results):
 	var target = results["required_ratio"]
 	var chars_left = results["chars_left"]
 	var score = results["score"]
+	var spotted = results["spotted"]
 	
-	var result_txt = "You won the contest!"
-	var sub_result_txt = "You managed to submit your piece on time! As your opponent's piece stank becuase of your exploits, you won the contest. Congratulations!"
-	if ratio < target:
+	var result_txt
+	var sub_result_txt
+	if chars_left != 0 and not spotted:
+		result_txt = "You lost!"
+		sub_result_txt = "You failed to finish before the deadline! Nobody liked what you had written..."
+	elif ratio < target and not spotted:
 		result_txt = "You lost!"
 		sub_result_txt = "Your opponent's piece far excelled yours and won the contest. You didn't cheat enough..."
-	if chars_left != 0:
+	elif spotted:
 		result_txt = "You lost!"
-		sub_result_txt = "You failed to finish your masterpiece before the deadline! Nobody was able appreciate your genius..."
+		sub_result_txt = "Your rival spotted you tampering and ratted you out! You weren't sneaky enough..."
+	else:
+		result_txt = "You won the contest!"
+		sub_result_txt = "You managed to submit your piece on time!\nAs your opponent's piece stank becuase of your exploits, you won the contest.\nCongratulations!"
 	
 	$LabelBox/ResultLbl.text = result_txt
 	$LabelBox/SubResultLbl.text = sub_result_txt
-	$LabelBox/RatioLbl.text = "Ratio of Opponent's document tampered:\n" + str(ratio) + "%"
+	$LabelBox/RatioLbl.text = "Ratio of Opponent's Document Tampered: " + str(int(ratio*100)) + "%"
 	$LabelBox/CharsLbl.text = "Characters Left to Type: " + str(chars_left)
 	$LabelBox/ScoreLbl.text = "Final Score: " + str(score)
 

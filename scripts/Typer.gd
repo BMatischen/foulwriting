@@ -2,6 +2,7 @@ extends Node2D
 
 signal lines_tampered
 signal state_change
+signal spotted
 
 var tracery_class = load("res://scripts/tracery.gd")
 var document
@@ -88,7 +89,7 @@ func find_player(line):
 	regex.compile("\\d+")
 	var index = int(regex.search(line.name).get_string())
 	if document.get_line(index).has_player():
-		get_tree().quit()
+		emit_signal("spotted")
 #	if index-1 > -1:
 #		if document.get_line(index-1).has_player():
 #			get_tree().quit()

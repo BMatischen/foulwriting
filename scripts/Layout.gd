@@ -49,5 +49,10 @@ func _on_AIDoc_update_tamper_count(changed, total, is_tamper=true):
 
 
 func _on_GameTimer_count_complete():
-	var data = {"ratio_tampered": ratio_tampered, "required_ratio": TAMPER_MIN ,"score": score, "chars_left": chars_left}
+	var data = {"ratio_tampered": ratio_tampered, "required_ratio": TAMPER_MIN ,"score": score, "chars_left": chars_left, "spotted": false}
+	$GameOver.display_results(data)
+
+
+func _on_Typer_spotted():
+	var data = {"ratio_tampered": ratio_tampered, "required_ratio": TAMPER_MIN ,"score": score, "chars_left": chars_left, "spotted": true}
 	$GameOver.display_results(data)

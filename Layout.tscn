@@ -111,7 +111,6 @@ __meta__ = {
 
 [node name="GameTimer" type="Timer" parent="."]
 script = ExtResource( 5 )
-count = 5
 
 [node name="GameOver" type="Node2D" parent="."]
 pause_mode = 2
@@ -190,6 +189,7 @@ zoom = Vector2( 1.5, 1.1 )
 [connection signal="pressed" from="DocSwitch" to="." method="_on_DocSwitch_pressed"]
 [connection signal="update_tamper_count" from="AIDoc" to="." method="_on_AIDoc_update_tamper_count"]
 [connection signal="qte_complete" from="PageFrame" to="." method="_on_PageFrame_qte_complete"]
+[connection signal="spotted" from="Typer" to="." method="_on_Typer_spotted"]
 [connection signal="count_complete" from="GameTimer" to="." method="_on_GameTimer_count_complete"]
 [connection signal="timeout" from="GameTimer" to="GameTimer" method="_on_GameTimer_timeout"]
 [connection signal="pressed" from="GameOver/LabelBox/ButtonBox/RetryBtn" to="GameOver" method="_on_RetryBtn_pressed"]

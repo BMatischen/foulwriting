@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Theme.tres" type="Theme" id=1]
 [ext_resource path="res://scripts/HowtoPlayScreen.gd" type="Script" id=2]
+[ext_resource path="res://TamperMode.PNG" type="Texture" id=3]
 
 [node name="HowtoPlayScreen" type="Node2D"]
 script = ExtResource( 2 )
@@ -12,44 +13,81 @@ margin_top = -138.0
 margin_right = 2261.0
 margin_bottom = 1166.0
 __meta__ = {
-"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 503.136
-margin_top = 71.3524
-margin_right = 1397.14
-margin_bottom = 596.352
+margin_left = 200.0
+margin_right = 1692.0
+margin_bottom = 1166.0
 theme = ExtResource( 1 )
 custom_constants/separation = 100
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 894.0
-margin_bottom = 537.0
-text = "You've made it the final of your school's annual writing competition and it's a few minutes away from the deadline before you need to submit your story to be judged. Not only do you have to finish your piece super fast, you also have to worry about your rival who's superior writing skills will leave you in the dust. 
+[node name="IntroLbl" type="Label" parent="VBoxContainer"]
+margin_right = 1492.0
+margin_bottom = 285.0
+size_flags_horizontal = 9
+size_flags_vertical = 1
+text = "You've made it the final of your school's annual writing competition and it's a few minutes away from the deadline before you need to submit your story to be judged. Not only do you have to finish your piece super fast, you also have to worry about your rival whose superior writing skills will leave you in the dust. 
 
 You can only win if you submit on time and tamper with your rival's writing. Fortunately for you, you managed to get remote access to their document by figuring out the password (it was password123). 
-
-To win, you'll need to make sure at least 50% of your rival's document is sabotaged, and finish typing up the very last page of your story before time runs out.
 
 Are you ready? It's time to break some rules and get tampering..."
 align = 1
 autowrap = true
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
+margin_left = 46.0
+margin_top = 385.0
+margin_right = 1446.0
+margin_bottom = 742.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_constants/separation = 200
+alignment = 1
+
+[node name="TamperTutLbl" type="Label" parent="VBoxContainer/HBoxContainer2"]
+margin_right = 700.0
+margin_bottom = 357.0
+rect_min_size = Vector2( 700, 100 )
+text = "Tamper Mode:
+In Tamper Mode, mess up your rival's document by clicking on a created line and use your keyboard to modify the selected text.
+The line where your cursor is will be highlighted in blue and the line your rival is looking is highlighted in red.
+Make sure you move your cursor to a safe place in the document to avoid getting seen. Otherwise, your rival will find you out and your're done for..."
+autowrap = true
+
+[node name="WritingTutLbl" type="Label" parent="VBoxContainer/HBoxContainer2"]
+margin_left = 900.0
+margin_top = 72.0
+margin_right = 1400.0
+margin_bottom = 285.0
+rect_min_size = Vector2( 500, 200 )
+text = "Writing Mode:
+In Writing Mode, type characters onto your document by pressing the required keys in order.
+You'll need to have typed all of them before time runs."
+autowrap = true
+
+[node name="TamperImg" type="Sprite" parent="VBoxContainer"]
+position = Vector2( 308.292, 842 )
+scale = Vector2( 0.344878, 0.470558 )
+texture = ExtResource( 3 )
+
+[node name="WritingImg" type="Sprite" parent="VBoxContainer"]
+position = Vector2( 671, 842 )
+
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 637.0
-margin_right = 894.0
-margin_bottom = 678.0
+margin_top = 842.0
+margin_right = 1492.0
+margin_bottom = 883.0
 custom_constants/separation = 50
 alignment = 1
 
 [node name="TitleBtn" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 415.0
-margin_right = 479.0
+margin_left = 714.0
+margin_right = 778.0
 margin_bottom = 41.0
 text = "Back"
 
