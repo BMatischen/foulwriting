@@ -1,16 +1,13 @@
 extends ScrollContainer
 
-signal typing_done
 signal update_tamper_count
 
 var newest_line
-var curr_line
 var lines_tampered
 onready var linenode = preload("res://Line.tscn")
 
 func _ready():
 	newest_line = 1
-	curr_line = newest_line
 	lines_tampered = 0
 
 
@@ -74,6 +71,9 @@ func edit_lines(lines):
 	while lines.size() > 0:
 		var line = lines.pop_back()
 		line.editable = false
+#		var regex = RegEx.new()
+#		regex.compile("\\d+")
+#		var index = int(regex.search(line.name).get_string())
 		get_tree().current_scene.get_node("Typer").find_player(line)
 		var target_txt = line.get_target_text()
 		var j = 0
@@ -87,7 +87,7 @@ func edit_lines(lines):
 		line.tampered = false
 		lines_tampered -= 1
 		emit_signal("update_tamper_count", lines_tampered, count_lines(), false)
-	get_tree().current_scene.get_node("Typer").start_timer()
+	get_tree().current_scene.get_node("Typer").start_idle()
 
 
 func get_line(line_num):

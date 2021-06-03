@@ -1,23 +1,16 @@
 extends Node2D
 
 signal lines_tampered
-signal state_change
 signal spotted
 
 var tracery_class = load("res://scripts/tracery.gd")
 var document
 
 var target_text  # Text intended to be written
-var curr_pos
-var next_pos
-var state
+var curr_txt_pos  # Current position in text, start of substriings
+var next_txt_pos  # Future start position in text, end of substrings
+var suspect_line_num  # Index of Line where player was last found on
 
-
-enum {
-	TYPE,
-	CHECK,
-	IDLE
-}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -34,10 +27,9 @@ Down, down, down. Would the fall nev-er come to an end? "I should like to know,"
 
 Down, down, down. "Di-nah will miss me to-night," Al-ice went on. (Di-nah was the cat.) "I hope they'll think to give her her milk at tea-time. Di-nah, my dear! I wish you were down here with me! There are no mice in the air, but you might catch a bat, and that's much like a mouse, you know. But do cats eat bats?" And here Al-ice must have gone to sleep, for she dreamed that she walked hand in hand with Di-nah, and just as she asked her, "Now, Di-nah, tell me the truth, do you eat bats?" all at once, thump! thump! down she came on a heap of sticks and dry leaves, and the long fall was o-ver. """
 	
-	curr_pos = 0
-	next_pos = 0
+	curr_txt_pos = 0
+	next_txt_pos = 0
 	document = get_tree().current_scene.get_node("AIDoc")
-	#state = TYPE
 	write_text_chunk()
 
 func set_target_text(text):
@@ -69,28 +61,36 @@ func make_text_to_write():
 
 func write_text_chunk():
 	var i = (target_text.length()-1)/4
-	next_pos += i
-	var subtext = target_text.substr(curr_pos, next_pos)
-	curr_pos = next_pos
+	next_txt_pos += i
+	var subtext = target_text.substr(curr_txt_pos, next_txt_pos)
+	curr_txt_pos = next_txt_pos
+	
+	# Check if player not on latest line beofre writing
+	if document.get_line(document.newest_line).has_player():
+		suspect_line_num = document.newest_line
+		$SpotTimer.start()
 	document.write_new_text(subtext)
 
 
+# Get changed lines, start cleaning lines if some tampered else go idle
 func scan_document():
 	var lines = document.get_changed_lines()
 	if lines != []:
-		#emit_signal("lines_tampered", lines.size(), document.count_lines())
 		document.edit_lines(lines)
 	else:
-		start_timer()
+		start_idle()
 
 
+# Check for position of player in document using a given line
 func find_player(line):
 	var regex = RegEx.new()
 	regex.compile("\\d+")
 	var index = int(regex.search(line.name).get_string())
 	if document.get_line(index).has_player():
-		emit_signal("spotted")
+		suspect_line_num = index
+		$SpotTimer.start()
 #	if index-1 > -1:
+#		if document.get_line(index-1).has_player():
 #		if document.get_line(index-1).has_player():
 #			get_tree().quit()
 #	if index+1 < document.get_children_count():
@@ -98,13 +98,19 @@ func find_player(line):
 #			get_tree().quit()
 
 
-func start_timer():
+func start_idle():
 	$IdleWait.start()
 
 
-
+# After idle state, continue writing or scan document for tampering
 func _on_IdleWait_timeout():
-	if curr_pos != target_text.length():
+	if curr_txt_pos != target_text.length():
 		write_text_chunk()
 	else:
 		scan_document()
+
+
+# If player still on line after first detection, they are spotted
+func _on_SpotTimer_timeout():
+	if document.get_line(suspect_line_num).has_player():
+		emit_signal("spotted")

@@ -8,5 +8,8 @@ script = ExtResource( 1 )
 [node name="IdleWait" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="state_change" from="." to="." method="_on_Typer_state_change"]
+[node name="SpotTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="IdleWait" to="." method="_on_IdleWait_timeout"]
+[connection signal="timeout" from="SpotTimer" to="." method="_on_SpotTimer_timeout"]
