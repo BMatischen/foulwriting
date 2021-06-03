@@ -1,14 +1,34 @@
 extends ScrollContainer
 
-
-#var size # Number of keyboard QTEs to complete
 var inputs # Array of QTE inputs
 var font = get_font("ThemeFont")
 var actions = {
-	"UP": "^",
-	"DOWN": "V",
-	"LEFT": "<",
-	"RIGHT": ">",
+	"A": "A",
+	"B": "B",
+	"C": "C",
+	"D": "D",
+	"E": "E",
+	"F": "F",
+	"G": "G",
+	"H": "H",
+	"I": "I",
+	"J": "J",
+	"K": "K",
+	"L": "L",
+	"M": "M",
+	"N": "N",
+	"O": "O",
+	"P": "P",
+	"Q": "Q",
+	"R": "R",
+	"S": "S",
+	"T": "T",
+	"U": "U",
+	"V": "V",
+	"W": "W",
+	"X": "X",
+	"Y": "Y",
+	"Z": "Z",
 }
 
 # Called when the node enters the scene tree for the first time.

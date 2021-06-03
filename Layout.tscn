@@ -25,9 +25,9 @@ __meta__ = {
 
 [node name="DocSwitch" type="Button" parent="."]
 margin_left = 884.647
-margin_top = 781.999
+margin_top = 824.0
 margin_right = 1193.65
-margin_bottom = 831.999
+margin_bottom = 874.0
 rect_scale = Vector2( 1.5, 1.5 )
 theme = ExtResource( 4 )
 shortcut_in_tooltip = false
@@ -47,7 +47,7 @@ rect_scale = Vector2( 1.1, 1 )
 margin_left = 313.0
 margin_top = 0.0
 margin_right = 1822.0
-margin_bottom = 781.999
+margin_bottom = 824.0
 rect_scale = Vector2( 1.1, 1 )
 
 [node name="LabelContainer" type="VBoxContainer" parent="."]
@@ -111,6 +111,7 @@ __meta__ = {
 
 [node name="GameTimer" type="Timer" parent="."]
 script = ExtResource( 5 )
+count = 300
 
 [node name="GameOver" type="Node2D" parent="."]
 pause_mode = 2

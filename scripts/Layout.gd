@@ -25,10 +25,12 @@ func _on_DocSwitch_pressed():
 	is_tamper = !is_tamper
 	if is_tamper == false:
 		$DocSwitch.text = "Switch to Tamper Mode"
+		$AIDoc.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		$PageFrame.set_process_unhandled_key_input(true)
 		$PageFrame.visible = true
 	else:
 		$DocSwitch.text = "Switch to Writing Mode"
+		$AIDoc.mouse_filter = Control.MOUSE_FILTER_STOP
 		$PageFrame.set_process_unhandled_key_input(false)
 		$PageFrame.visible = false
 
@@ -49,10 +51,22 @@ func _on_AIDoc_update_tamper_count(changed, total, is_tamper=true):
 
 
 func _on_GameTimer_count_complete():
-	var data = {"ratio_tampered": ratio_tampered, "required_ratio": TAMPER_MIN ,"score": score, "chars_left": chars_left, "spotted": false}
+	var data = {
+		"ratio_tampered": ratio_tampered,
+		"required_ratio": TAMPER_MIN,
+		"score": score,
+		"chars_left": chars_left,
+		"spotted": false
+	}
 	$GameOver.display_results(data)
 
 
 func _on_Typer_spotted():
-	var data = {"ratio_tampered": ratio_tampered, "required_ratio": TAMPER_MIN ,"score": score, "chars_left": chars_left, "spotted": true}
+	var data = {
+		"ratio_tampered": ratio_tampered,
+		"required_ratio": TAMPER_MIN,
+		"score": score,
+		"chars_left": chars_left,
+		"spotted": true
+	}
 	$GameOver.display_results(data)
