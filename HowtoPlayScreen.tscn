@@ -1,49 +1,50 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Theme.tres" type="Theme" id=1]
 [ext_resource path="res://scripts/HowtoPlayScreen.gd" type="Script" id=2]
 [ext_resource path="res://TamperMode.PNG" type="Texture" id=3]
+[ext_resource path="res://WritingMode.PNG" type="Texture" id=4]
 
 [node name="HowtoPlayScreen" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="Background" type="ColorRect" parent="."]
-margin_left = -354.0
+margin_left = -356.378
 margin_top = -138.0
-margin_right = 2261.0
+margin_right = 2258.62
 margin_bottom = 1166.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
-margin_left = 200.0
-margin_right = 1692.0
-margin_bottom = 1166.0
+margin_left = 181.0
+margin_top = -36.0
+margin_right = 2058.0
+margin_bottom = 1224.0
+rect_scale = Vector2( 0.8, 0.8 )
 theme = ExtResource( 1 )
-custom_constants/separation = 100
+custom_constants/separation = 25
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="IntroLbl" type="Label" parent="VBoxContainer"]
-margin_right = 1492.0
-margin_bottom = 285.0
+margin_right = 1877.0
+margin_bottom = 255.0
 size_flags_horizontal = 9
 size_flags_vertical = 1
 text = "You've made it the final of your school's annual writing competition and it's a few minutes away from the deadline before you need to submit your story to be judged. Not only do you have to finish your piece super fast, you also have to worry about your rival whose superior writing skills will leave you in the dust. 
 
-You can only win if you submit on time and tamper with your rival's writing. Fortunately for you, you managed to get remote access to their document by figuring out the password (it was password123). 
-
-Are you ready? It's time to break some rules and get tampering..."
+You can only win if you submit on time and tamper with your rival's writing. Fortunately for you, you managed to get remote access to their document by figuring out the password (it was password123). "
 align = 1
 autowrap = true
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer"]
-margin_left = 46.0
-margin_top = 385.0
-margin_right = 1446.0
-margin_bottom = 742.0
+margin_left = 238.0
+margin_top = 280.0
+margin_right = 1638.0
+margin_bottom = 1137.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_constants/separation = 200
@@ -51,44 +52,60 @@ alignment = 1
 
 [node name="TamperTutLbl" type="Label" parent="VBoxContainer/HBoxContainer2"]
 margin_right = 700.0
-margin_bottom = 357.0
+margin_bottom = 857.0
 rect_min_size = Vector2( 700, 100 )
 text = "Tamper Mode:
+
 In Tamper Mode, mess up your rival's document by clicking on a created line and use your keyboard to modify the selected text.
-The line where your cursor is will be highlighted in blue and the line your rival is looking is highlighted in red.
-Make sure you move your cursor to a safe place in the document to avoid getting seen. Otherwise, your rival will find you out and your're done for..."
+
+
+
+
+
+
+You'll need to tamper 50% minimum of the document at the end  to have a chance of winning.
+
+Make sure you move your cursor to a different line that your rival will ignore. Otherwise, your rival will find out abut your tampering and get you in trouble."
 autowrap = true
 
 [node name="WritingTutLbl" type="Label" parent="VBoxContainer/HBoxContainer2"]
 margin_left = 900.0
-margin_top = 72.0
+margin_top = 64.0
 margin_right = 1400.0
-margin_bottom = 285.0
+margin_bottom = 792.0
 rect_min_size = Vector2( 500, 200 )
 text = "Writing Mode:
+
 In Writing Mode, type characters onto your document by pressing the required keys in order.
-You'll need to have typed all of them before time runs."
+
+
+
+
+You'll need to have typed all of them before time runs out.
+
+Keep in mind where your cursor is before hiding your rival's document, otherwise you will get caught red-handed."
 autowrap = true
 
 [node name="TamperImg" type="Sprite" parent="VBoxContainer"]
-position = Vector2( 308.292, 842 )
-scale = Vector2( 0.344878, 0.470558 )
+position = Vector2( 587.598, 689.316 )
+scale = Vector2( 0.51278, 0.680007 )
 texture = ExtResource( 3 )
 
 [node name="WritingImg" type="Sprite" parent="VBoxContainer"]
-position = Vector2( 671, 842 )
+position = Vector2( 1514.49, 696.624 )
+texture = ExtResource( 4 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 842.0
-margin_right = 1492.0
-margin_bottom = 883.0
+margin_top = 1162.0
+margin_right = 1877.0
+margin_bottom = 1210.0
 custom_constants/separation = 50
 alignment = 1
 
 [node name="TitleBtn" type="Button" parent="VBoxContainer/HBoxContainer"]
-margin_left = 714.0
-margin_right = 778.0
-margin_bottom = 41.0
+margin_left = 900.0
+margin_right = 976.0
+margin_bottom = 48.0
 text = "Back"
 
 [node name="Camera2D" type="Camera2D" parent="."]
