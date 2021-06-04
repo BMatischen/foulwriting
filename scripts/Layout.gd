@@ -28,6 +28,7 @@ func _ready():
 	score_lbl.text = "Score:\n" + str(score)
 	doc_switch.text = "Switch to Writing Mode"
 	$GameTimer.start()
+	$Music.play()
 
 
 func _on_DocSwitch_pressed():
@@ -79,3 +80,7 @@ func _on_Typer_spotted():
 		"spotted": true
 	}
 	$GameOver.display_results(data)
+
+
+func _on_Music_finished():
+	$Music.play()
