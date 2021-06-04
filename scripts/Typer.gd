@@ -51,43 +51,64 @@ func make_text_to_write():
 		
 		"occupationNounHero": ["detective", "spy", "police officer", "guard"],
 		"villainTitle": ["genius", "mastermind", "occultist"],
-		"villainReason": ["increase my YouTube ad revenue", "become the world's first trillionaire", "have the world bow before me", "get rid of taxes once and for all", "become a universal space entrepreneur", "make lots of cold, hard cash"],
+		"villainReason": ["increase my YouTube ad revenue", "become the world's first trillionaire", "have the world bow before me", 
+		"get rid of taxes once and for all", "become a universal space entrepreneur", "make lots of cold, hard cash", "be able to watch all my favourite TV shows without being interrupted constantly"],
 		"villainPlan": ["convert the planet into a Dyson sphere", "destroy the universe and time itself"],
 		
 		"baseDesc": ["sleek", "run-down", "cramped", "post-mordernist", "grey"],
-		"trap": ["surrounded by a band of #moodBad# crocodiles", "surrounded by a floor of hot lava", "entrapped in a huge metal cage", "trapped by a large fishing net", "trapped by several #personalityBadMod# professional atheletes"],
+		
+		"trap": ["band of #moodBad# crocodiles", "floor of lava", "metal cage", "large fishing net", "several #personalityBadMod# professional atheletes"],
+		
 		"occupationNounMinion": ["ninja", "henchman", "grandma", "monkey"],
 		"personalityGoodMod": ["great", "non-corrupt", "diligent", "attentive", "intelligent", "astute", "cold"],
-		"personalityBadMod": ["sly", "rude", "suspicious", "paranoid", "sneaky"],
+		"personalityBadMod": ["sly", "rude", "suspicious", "paranoid", "sneaky", "meak", "disgusting", "foul"],
 		"personalityEvilMod": ["evil", "maniacal", "crazed", "bloodthirsty", "wimpy", "unhinged"],
 		"moodBad": ["vexed","indignant","impassioned","wistful", "joyous", "sullen", "unerved", "mad", "anxious", "nervous", "hungry", "murderous"],
 		"moodGood": ["joyous", "pleased", "calm", "relaxed", "confident", "eager"],
-		"adverb": ["sullenly", "slowly", "quickly", "quitely", "calmly", "peacefully", "violently", "forecfully", "enthusiastically"],
-		"weaponsMelee": ["hammer", "knife", "katana", "fists", "baton"],
-		"weaponsRanged": ["laser gun", "death ray", "shruikens", ""],
-		"hurt": ["shot", "fatally wounded", "killed", "put to sleep", "pacified", "developed a migraine"],
+		"speech": ["shouted", "exclaimed", "said", "whispered", "yelled", "replied", "snapped", "mouthed", "cried"],
+		"adverb": ["sullenly", "slowly", "quickly", "quitely", "calmly", "peacefully", "violently", "forecfully", "enthusiastically", "heroically", "triumphantly", "sarcastically", "happily", "suddenly"],
+		
+		"weaponsMelee": ["hammer", "knife", "katana", "fists", "baton", "cheese grater", "fish", "drumkit"],
+		"weaponsRanged": ["laser gun", "death ray", "shruikens"],
+		"attack": ["shot", "fatally wounded", "killed", "put to sleep", "pacified", "gave a migraine to", "give a painful back massage to", "dodged", "dispatched several blows to"],
+		
 		"minion": ["ninja", "guard", "camera", "ghoul", "robot"],
+		"minionGroupMod": ["an army of", "a group of", "hundreds of", "dozens of"],
+		"minionAttackThrow": ["threw #weaponsRanged.s#", "threw #weaponsMelee.s#", "took aim with #weaponsRanged.s# and #weaponsRanged.s#", "threw #weaponsMelee.s# and #weaponsMelee.s#"],
+		"minionCount": ["5", "10", "20", "50", "100", "several", "hordes"],
 		
 		"setWeapon": ["#weaponsMelee#", "#weaponsRanged#"],
-		"setHero": ["[#setHeroPronouns#][hero:#name#][heroJob:#occupationNounHero#]"],
+		"setHero": ["[#setHeroPronouns#][hero:#name#][heroJob:#occupationNounHero#][heroWeapon:#setWeapon#]"],
 		"setFirstCompanion": ["[#setFirstCompPronouns#][firstComp:#name#][firstCompJob:#occupationNounHero#][firstCompWeapon:#setWeapon#]"],
-		"setSecondCompanion": ["[#setSecondCompPronouns#][secondComp:#name#][secondCompJob:#occupationNounHero#][sceondCompWeapon:#setWeapon#]"],
+		"setSecondCompanion": ["[#setSecondCompPronouns#][secondComp:#name#][secondCompJob:#occupationNounHero#][secondCompWeapon:#setWeapon#]"],
 		"setVillain": ["[#setVillainPronouns#][villain:#name#][title:#villainTitle#][plan:#villainPlan#][reason:#villainReason#]"],
+		"setTrap": ["[chosenTrap:#trap#]"],
 		
 		"opening": ["""It was midnight when they reached the lair of the #title# #villain#. #hero# the #heroJob# and #heroTheir# companions #firstComp# the #firstCompJob# and 
-		#secondComp# the #secondCompJob# had only one plan of action: to burst straight into the lair and make #villain# confess #villainTheir# evil scheme"""],
+		#secondComp# the #secondCompJob# had only one plan of action: to burst straight into the lair and make #villain# confess #villainTheir# evil scheme."""],
 		
-		"intoBase": ["Quitely, the gang sneaked past the #minion.s# and inside without getting seen."],
+		"intoBase": ["Quitely, the gang sneaked past #minion.s# guarding the perimeter of the lair and infiltrated without getting seen."],
 		
-		"surpriseTrap": ["""Inside, there was no one to be found. #firstComp# was #moodBad#; 'This seems like a trap' #firstCompThey# whispered. In an instant, everyone became #trap#. 
-		There was no way out. #personalityEvilMod# laughing ecohoed throughout the lair. #villain#, the #title# behind everything, had arrived."""],
+		"surpriseTrap": ["""Inside, there was no one to be found. #firstComp# was #moodBad#; \"This seems like a trap\" #firstCompThey# #speech# #adverb#. In an instant, everyone became entrapped by a #chosenTrap#. 
+		There was no way out. #personalityEvilMod.capitalize# laughing echoed throughout the lair. #villain#, the #title# behind everything, had arrived."""],
 		
 		"monologue": ["""Seeing #hero#, #firstComp# and #secondComp# trapped, #villain# could not help but burst out into a monologue. \"So you are the losers who have tampering with my plans!\", 
-		#villainThey# started. \"Now that I have you in my hands and took a break from messing up my plans, would you like to know what it is I'm upto?\" #secondComp# nodded #adverb#, 
-		#moodGood# to finally understand what this #personalityEvilMod# #title# was doing. \"My scheme is very simple: it is to #plan# in order to #reason#.\""""],
+		#villainThey# #speech# #adverb#. \"Now that I have you in my hands and took a break from messing up my plans, would you like to know what my plans are?\" #secondComp# nodded #adverb#, 
+		#moodGood# to finally understand what this #personalityEvilMod# #title# was upto, especially if it was no good. \"My scheme is very simple: I intend to #plan# in order to #reason#.\" 
+		I will not be stopped by #personalityBadMod# people from achieving my aims, let alone a mere #heroJob#, a #personalityBadMod# #firstCompJob# or a #personalityBadMod# #secondCompJob#. 
+		Not like you lot can do anything since I got you by surprise."""],
 		
-		"story": ["#opening# #intoBase# #surpriseTrap# #monologue#"],
-		"origin": ["#[#setHero#][#setFirstCompanion#][#setSecondCompanion#][#setVillain#]story#"],
+		"escapeTrap": ["""\"Well that's where you're wrong!\"  #speech# #hero#. And with that, #hero#'s #heroWeapon# allowed everyone to escape the #trap#. 
+		#hero#, #firstComp# and #secondComp# were now free and ready for a fight!"""],
+		
+		"fight": ["""#villain# was #adverb# #moodBad# by this turn of events. \"Minions, attack these intruders!\" #villainThey# #speech#. At these words, #minionGroupMod# #minion.s# appeared and attacked. 
+		The #personalityBadMod# minions attacked first and #minionAttackThrow# but #secondComp# managed to protect everyone using #secondCompTheir# #secondCompWeapon# and #attack# #minionCount#. 
+		#minionCount# #minion.s# came up behind #hero# who narrowly dodged an incoming #weaponsMelee#. 
+		After #heroThey# #adverb# #attack# to #minionCount# enemies, #heroThey# lost #heroTheir# #heroWeapon# and had to make do with a #weaponsMelee# left behind. Unfortunately it broke very quickly and #hero# was at the mercy of #minionCount# #minion.s#. 
+		But #firstComp# managed to save the day with #firstCompTheir# #firstCompWeapon#. \"Oh, your're still alive!\", #firstCompThey# #speech#. \"Come on, we need to stick together.\" """],
+		
+		"story": ["#opening# #intoBase# #surpriseTrap# #monologue#, #escapeTrap#, #fight#"],
+		"origin": ["#[#setHero#][#setFirstCompanion#][#setSecondCompanion#][#setVillain#][#setTrap#]story#"],
 	}
 	var tracery = tracery_class.new()
 	var grammar = tracery.get_grammar(rules)
@@ -100,6 +121,7 @@ func write_text_chunk():
 	var last_txt_pos = curr_txt_pos
 	curr_txt_pos += i
 	var subtext = target_text.substr(last_txt_pos, i)
+	
 	# Check if player not on latest line before writing
 	if document.get_line(document.newest_line).has_player():
 		suspect_line_num = document.newest_line
