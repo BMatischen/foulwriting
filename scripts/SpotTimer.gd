@@ -2,14 +2,14 @@ extends Timer
 
 signal count_complete
 
-export var count = 2
+var count
 var detection_meter
 var status_lbl
-var time = 0.5
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	count = 2
 	detection_meter = get_tree().current_scene.get_node("HUDContainer/DetectionBox/DetectionMeter")
 	status_lbl = get_tree().current_scene.get_node("HUDContainer/DetectionBox/StatusLbl")
 	detection_meter.value = 0

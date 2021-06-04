@@ -25,7 +25,7 @@ func _ready():
 	qte_meter.max_value = chars_left
 	time_meter.value = $GameTimer.count
 	time_meter.max_value = time_meter.value
-	score_lbl.text = "Score: " + str(score)
+	score_lbl.text = "Score:\n" + str(score)
 	doc_switch.text = "Switch to Writing Mode"
 	$GameTimer.start()
 

@@ -44,25 +44,26 @@ __meta__ = {
 
 [node name="AIDoc" parent="." instance=ExtResource( 1 )]
 pause_mode = 1
-margin_left = 313.0
+margin_left = 351.054
 margin_top = 0.0
-margin_right = 1822.0
+margin_right = 1860.05
 margin_bottom = 714.0
 rect_scale = Vector2( 1.1, 1 )
 
 [node name="PageFrame" parent="." instance=ExtResource( 3 )]
 pause_mode = 1
 margin_left = 313.0
-margin_top = 0.0
+margin_top = -30.9194
 margin_right = 1822.0
-margin_bottom = 770.0
+margin_bottom = 739.081
 rect_scale = Vector2( 1.15, 1.1 )
 
 [node name="HUDContainer" type="VBoxContainer" parent="."]
 pause_mode = 1
-margin_left = -300.846
-margin_right = 103.154
-margin_bottom = 594.0
+margin_left = -303.378
+margin_top = -30.9194
+margin_right = 100.622
+margin_bottom = 563.081
 rect_scale = Vector2( 1.5, 1.5 )
 size_flags_horizontal = 2
 size_flags_vertical = 2
@@ -99,7 +100,7 @@ size_flags_vertical = 1
 theme = ExtResource( 4 )
 custom_styles/fg = SubResource( 5 )
 custom_styles/bg = SubResource( 6 )
-step = 1.0
+step = 0.5
 percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
