@@ -7,28 +7,32 @@ var tracery_class = load("res://scripts/tracery.gd")
 var document
 
 var target_text  # Text intended to be written
-var curr_txt_pos  # Current position in text, start of substriings
-var next_txt_pos  # Future start position in text, end of substrings
+var curr_txt_pos  # Current furthest position in text, end of substrings
 var suspect_line_num  # Index of Line where player was last found on
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#target_text = make_text_to_write()
-	target_text = """ As fast as she could go, Al-ice went down the hole af-ter it, and did not once stop to think how in the world she was to get out.
+	target_text = make_text_to_write().replace("\n","")
+#	target_text = """It was the White Rabbit, trotting slowly back again, and looking anxiously about as it went, as if it had lost something; and she heard it muttering to itself “The Duchess! The Duchess! Oh my dear paws! Oh my fur and whiskers! She’ll get me executed, as sure as ferrets are ferrets! Where can I have dropped them, I wonder?” Alice guessed in a moment that it was looking for the fan and the pair of white kid gloves, and she very good-naturedly began hunting about for them, but they were nowhere to be seen—everything seemed to have changed since her swim in the pool, and the great hall, with the glass table and the little door, had vanished completely.
+#
+#Very soon the Rabbit noticed Alice, as she went hunting about, and called out to her in an angry tone, “Why, Mary Ann, what are you doing out here? Run home this moment, and fetch me a pair of gloves and a fan! Quick, now!” And Alice was so much frightened that she ran off at once in the direction it pointed to, without trying to explain the mistake it had made.
+#
+#“He took me for his housemaid,” she said to herself as she ran. “How surprised he’ll be when he finds out who I am! But I’d better take him his fan and gloves—that is, if I can find them.” As she said this, she came upon a neat little house, on the door of which was a bright brass plate with the name “W. RABBIT,” engraved upon it. She went in without knocking, and hurried upstairs, in great fear lest she should meet the real Mary Ann, and be turned out of the house before she had found the fan and gloves.
+#
+#“How queer it seems,” Alice said to herself, “to be going messages for a rabbit! I suppose Dinah’ll be sending me on messages next!” And she began fancying the sort of thing that would happen: “‘Miss Alice! Come here directly, and get ready for your walk!’ ‘Coming in a minute, nurse! But I’ve got to see that the mouse doesn’t get out.’ Only I don’t think,” Alice went on, “that they’d let Dinah stop in the house if it began ordering people about like that!”
+#
+#By this time she had found her way into a tidy little room with a table in the window, and on it (as she had hoped) a fan and two or three pairs of tiny white kid gloves: she took up the fan and a pair of the gloves, and was just going to leave the room, when her eye fell upon a little bottle that stood near the looking-glass. There was no label this time with the words “DRINK ME,” but nevertheless she uncorked it and put it to her lips. “I know something interesting is sure to happen,” she said to herself, “whenever I eat or drink anything; so I’ll just see what this bottle does. I do hope it’ll make me grow large again, for really I’m quite tired of being such a tiny little thing!”
+#
+#It did so indeed, and much sooner than she had expected: before she had drunk half the bottle, she found her head pressing against the ceiling, and had to stoop to save her neck from being broken. She hastily put down the bottle, saying to herself “That’s quite enough—I hope I shan’t grow any more—As it is, I can’t get out at the door—I do wish I hadn’t drunk quite so much!”
+#
+#Alas! it was too late to wish that! She went on growing, and growing, and very soon had to kneel down on the floor: in another minute there was not even room for this, and she tried the effect of lying down with one elbow against the door, and the other arm curled round her head. Still she went on growing, and, as a last resource, she put one arm out of the window, and one foot up the chimney, and said to herself “Now I can do no more, whatever happens. What will become of me?”
+#
+#Luckily for Alice, the little magic bottle had now had its full effect, and she grew no larger: still it was very uncomfortable, and, as there seemed to be no sort of chance of her ever getting out of the room again, no wonder she felt unhappy.
+#
+#“It was much pleasanter at home,” thought poor Alice, “when one wasn’t always growing larger and smaller, and being ordered about by mice and rabbits. I almost wish I hadn’t gone down that rabbit-hole—and yet—and yet—it’s rather curious, you know, this sort of life! I do wonder what can have happened to me! When I used to read fairy-tales, I fancied that kind of thing never happened, and now here I am in the middle of one! There ought to be a book written about me, that there ought! And when I grow up, I’ll write one—but I’m grown up now,” she added in a sorrowful tone; “at least there’s no room to grow up any more here.” """
 
-The hole went straight on for some way and then turned down with a sharp bend, so sharp that Al-ice had no time to think to stop till she found her-self fall-ing in what seemed a deep well.
-
-She must not have moved fast, or the well must have been quite deep, for it took her a long time to go down, and as she went she had time to look at the strange things she passed. First she tried to look down and make out what was there, but it was too dark to see; then she looked at the sides of the well and saw that they were piled with book-shelves; here and there she saw maps hung on pegs. She took down a jar from one of the shelves as she passed. On it was the word Jam, but there was no jam in it, so she put it back on one of the shelves as she fell past it.
-
-"Well," thought Al-ice to her-self, "af-ter such a fall as this, I shall not mind a fall down stairs at all. How brave they'll all think me at home! Why, I wouldn't say a thing if I fell off the top of the house." (Which I dare say was quite true.)
-
-Down, down, down. Would the fall nev-er come to an end? "I should like to know," she said, "how far I have come by this time. Wouldn't it be strange if I should fall right through the earth and come out where the folks walk with their feet up and their heads down?"
-
-Down, down, down. "Di-nah will miss me to-night," Al-ice went on. (Di-nah was the cat.) "I hope they'll think to give her her milk at tea-time. Di-nah, my dear! I wish you were down here with me! There are no mice in the air, but you might catch a bat, and that's much like a mouse, you know. But do cats eat bats?" And here Al-ice must have gone to sleep, for she dreamed that she walked hand in hand with Di-nah, and just as she asked her, "Now, Di-nah, tell me the truth, do you eat bats?" all at once, thump! thump! down she came on a heap of sticks and dry leaves, and the long fall was o-ver. """
-	
 	curr_txt_pos = 0
-	next_txt_pos = 0
 	document = get_tree().current_scene.get_node("AIDoc")
 	write_text_chunk()
 
@@ -39,33 +43,64 @@ func set_target_text(text):
 func make_text_to_write():
 	randomize()
 	var rules = {
-		"name": ["Arjun","Yuuma","Darcy","Mia","Chiaki","Izzi","Azra","Lina"],
-		"animal": ["unicorn","raven","sparrow","scorpion","coyote","eagle","owl","lizard","zebra","duck","kitten"],
-		"occupationBase": ["wizard","witch","detective","ballerina","criminal","pirate","lumberjack","spy","doctor","scientist","captain","priest"],
-		"occupationMod": ["occult ","space ","professional ","gentleman ","erotic ","time ","cyber","paleo","techno","super"],
-		"strange": ["mysterious","portentous","enchanting","strange","eerie"],
-		"tale": ["story","saga","tale","legend"],
-		"occupation": ["#occupationMod##occupationBase#"],
-		"mood": ["vexed","indignant","impassioned","wistful","astute","courteous"],
-		"setPronouns": ["[heroThey:they][heroThem:them][heroTheir:their][heroTheirs:theirs]","[heroThey:she][heroThem:her][heroTheir:her][heroTheirs:hers]","[heroThey:he][heroThem:him][heroTheir:his][heroTheirs:his]"],
-		"setSailForAdventure": ["set sail for adventure","left #heroTheir# home","set out for adventure","went to seek #heroTheir# forture"],
-		"setCharacter": ["[#setPronouns#][hero:#name#][heroJob:#occupation#]"],
-		"openBook": ["An old #occupation# told #hero# a story. 'Listen well' she said to #hero#, 'to this #strange# #tale#. ' #origin#'","#hero# went home.","#hero# found an ancient book and opened it.  As #hero# read, the book told #strange.a# #tale#: #origin#"],
-		"story": ["#hero# the #heroJob# #setSailForAdventure#. #openBook#"],
-		"origin": ["Once upon a time, #[#setCharacter#]story#"],
+		"name": ["Tom", "Charlotte", "Sophia", "Olivia", "Lucas", "Megan", "Dr Tommy Thompson", "Alexander", "Isabella", "Luna"],
+		"setHeroPronouns": ["[heroThey:they][heroThem:them][heroTheir:their][heroTheirs:theirs]","[heroThey:she][heroThem:her][heroTheir:her][heroTheirs:hers]","[heroThey:he][heroThem:him][heroTheir:his][heroTheirs:his]"],
+		"setFirstCompPronouns": ["[firstCompThey:they][firstCompThem:them][firstCompTheir:their][firstCompTheirs:theirs]","[firstCompThey:she][firstCompThem:her][firstCompTheir:her][firstCompTheirs:hers]","[firstCompThey:he][firstCompThem:him][firstCompTheir:his][firstCompTheirs:his]"],
+		"setSecondCompPronouns": ["[secondCompThey:they][secondCompThem:them][secondCompTheir:their][secondCompTheirs:theirs]","[secondCompThey:she][secondCompThem:her][secondCompTheir:her][secondCompTheirs:hers]","[secondCompThey:he][secondCompThem:him][secondCompTheir:his][secondCompTheirs:his]"],
+		"setVillainPronouns": ["[villainThey:they][villainThem:them][villainTheir:their][villainTheirs:theirs]","[villainThey:she][villainThem:her][villainTheir:her][villainTheirs:hers]","[villainThey:he][villainThem:him][villainTheir:his][villainTheirs:his]"],
+		
+		"occupationNounHero": ["detective", "spy", "police officer", "guard"],
+		"villainTitle": ["genius", "mastermind", "occultist"],
+		"villainReason": ["increase my YouTube ad revenue", "become the world's first trillionaire", "have the world bow before me", "get rid of taxes once and for all", "become a universal space entrepreneur", "make lots of cold, hard cash"],
+		"villainPlan": ["convert the planet into a Dyson sphere", "destroy the universe and time itself"],
+		
+		"baseDesc": ["sleek", "run-down", "cramped", "post-mordernist", "grey"],
+		"trap": ["surrounded by a band of #moodBad# crocodiles", "surrounded by a floor of hot lava", "entrapped in a huge metal cage", "trapped by a large fishing net", "trapped by several #personalityBadMod# professional atheletes"],
+		"occupationNounMinion": ["ninja", "henchman", "grandma", "monkey"],
+		"personalityGoodMod": ["great", "non-corrupt", "diligent", "attentive", "intelligent", "astute", "cold"],
+		"personalityBadMod": ["sly", "rude", "suspicious", "paranoid", "sneaky"],
+		"personalityEvilMod": ["evil", "maniacal", "crazed", "bloodthirsty", "wimpy", "unhinged"],
+		"moodBad": ["vexed","indignant","impassioned","wistful", "joyous", "sullen", "unerved", "mad", "anxious", "nervous", "hungry", "murderous"],
+		"moodGood": ["joyous", "pleased", "calm", "relaxed", "confident", "eager"],
+		"adverb": ["sullenly", "slowly", "quickly", "quitely", "calmly", "peacefully", "violently", "forecfully", "enthusiastically"],
+		"weaponsMelee": ["hammer", "knife", "katana", "fists", "baton"],
+		"weaponsRanged": ["laser gun", "death ray", "shruikens", ""],
+		"hurt": ["shot", "fatally wounded", "killed", "put to sleep", "pacified", "developed a migraine"],
+		"minion": ["ninja", "guard", "camera", "ghoul", "robot"],
+		
+		"setWeapon": ["#weaponsMelee#", "#weaponsRanged#"],
+		"setHero": ["[#setHeroPronouns#][hero:#name#][heroJob:#occupationNounHero#]"],
+		"setFirstCompanion": ["[#setFirstCompPronouns#][firstComp:#name#][firstCompJob:#occupationNounHero#][firstCompWeapon:#setWeapon#]"],
+		"setSecondCompanion": ["[#setSecondCompPronouns#][secondComp:#name#][secondCompJob:#occupationNounHero#][sceondCompWeapon:#setWeapon#]"],
+		"setVillain": ["[#setVillainPronouns#][villain:#name#][title:#villainTitle#][plan:#villainPlan#][reason:#villainReason#]"],
+		
+		"opening": ["""It was midnight when they reached the lair of the #title# #villain#. #hero# the #heroJob# and #heroTheir# companions #firstComp# the #firstCompJob# and 
+		#secondComp# the #secondCompJob# had only one plan of action: to burst straight into the lair and make #villain# confess #villainTheir# evil scheme"""],
+		
+		"intoBase": ["Quitely, the gang sneaked past the #minion.s# and inside without getting seen."],
+		
+		"surpriseTrap": ["""Inside, there was no one to be found. #firstComp# was #moodBad#; 'This seems like a trap' #firstCompThey# whispered. In an instant, everyone became #trap#. 
+		There was no way out. #personalityEvilMod# laughing ecohoed throughout the lair. #villain#, the #title# behind everything, had arrived."""],
+		
+		"monologue": ["""Seeing #hero#, #firstComp# and #secondComp# trapped, #villain# could not help but burst out into a monologue. \"So you are the losers who have tampering with my plans!\", 
+		#villainThey# started. \"Now that I have you in my hands and took a break from messing up my plans, would you like to know what it is I'm upto?\" #secondComp# nodded #adverb#, 
+		#moodGood# to finally understand what this #personalityEvilMod# #title# was doing. \"My scheme is very simple: it is to #plan# in order to #reason#.\""""],
+		
+		"story": ["#opening# #intoBase# #surpriseTrap# #monologue#"],
+		"origin": ["#[#setHero#][#setFirstCompanion#][#setSecondCompanion#][#setVillain#]story#"],
 	}
 	var tracery = tracery_class.new()
 	var grammar = tracery.get_grammar(rules)
-	return grammar.flatten('#origin#')
+	return grammar.flatten('#origin#').strip_escapes()
+
 
 
 func write_text_chunk():
-	var i = (target_text.length()-1)/4
-	next_txt_pos += i
-	var subtext = target_text.substr(curr_txt_pos, next_txt_pos)
-	curr_txt_pos = next_txt_pos
-	
-	# Check if player not on latest line beofre writing
+	var i = int(float(target_text.length()-1)/4.0)
+	var last_txt_pos = curr_txt_pos
+	curr_txt_pos += i
+	var subtext = target_text.substr(last_txt_pos, i)
+	# Check if player not on latest line before writing
 	if document.get_line(document.newest_line).has_player():
 		suspect_line_num = document.newest_line
 		$SpotTimer.start()
@@ -97,7 +132,7 @@ func start_idle():
 
 # After idle state, continue writing or scan document for tampering
 func _on_IdleWait_timeout():
-	if curr_txt_pos != target_text.length():
+	if curr_txt_pos < target_text.length():
 		write_text_chunk()
 	else:
 		scan_document()

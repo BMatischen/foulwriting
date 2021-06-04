@@ -4,6 +4,7 @@ signal update_tamper_count
 
 var newest_line
 var lines_tampered
+var paused
 onready var linenode = preload("res://Line.tscn")
 
 func _ready():
@@ -17,7 +18,6 @@ func write_new_text(text):
 	get_tree().current_scene.get_node("Typer").find_player(line)
 	var char_limit = line.get_max_length()
 	var text_length = line.get_text().length()
-	var current_pos_in_text = 0
 	line.editable = false
 	for c in text:
 		if text_length >= char_limit:
@@ -33,7 +33,6 @@ func write_new_text(text):
 			emit_signal("update_tamper_count", lines_tampered, count_lines(), false)
 		line.add_character(c)
 		text_length += 1
-		current_pos_in_text += 1
 		var pause = rand_range(0.0005, 0.001)
 		yield(get_tree().create_timer(pause), "timeout")
 	line.set_target_text(line.text)

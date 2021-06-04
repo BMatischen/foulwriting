@@ -4,10 +4,12 @@ signal tampered
 var _has_player  #Mark if player cursor is on this line
 var _target_text setget set_target_text, get_target_text
 var tampered  # Flag for if player has tampered this line already
+var limit = 100
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	self.max_length = limit
 	_has_player = false
 	_target_text = ""
 	tampered = false
