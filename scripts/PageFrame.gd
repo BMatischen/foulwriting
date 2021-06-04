@@ -4,7 +4,7 @@ signal qte_complete
 var tracery_class = load("res://scripts/tracery.gd")
 onready var qte_controller = $VBoxContainer/InputDisplay
 onready var page = $VBoxContainer/Page
-const TEXT = """wondering, almost with envy, at the high pressure of spirits involved in their misdeeds; and in any extremity inclined to help rather than to reprove. “I incline to Cain’s heresy,” he used to say quaintly: “I let my brother go to the devil in his own way."""
+const TEXT = """and in any extremity inclined to help rather than to reprove. “I incline to Cain’s heresy,” he used to say quaintly: “I let my brother go to the devil in his own way."""
 var curr_loc  # Pointer to position in text on page
 
 

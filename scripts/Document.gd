@@ -33,7 +33,7 @@ func write_new_text(text):
 			emit_signal("update_tamper_count", lines_tampered, count_lines(), false)
 		line.add_character(c)
 		text_length += 1
-		var pause = rand_range(0.0005, 0.001)
+		var pause = rand_range(0.01, 0.05)
 		yield(get_tree().create_timer(pause), "timeout")
 	line.set_target_text(line.text)
 	line.editable = true

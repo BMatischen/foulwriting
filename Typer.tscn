@@ -7,6 +7,7 @@
 script = ExtResource( 1 )
 
 [node name="IdleWait" type="Timer" parent="."]
+wait_time = 1.5
 one_shot = true
 
 [node name="SpotTimer" type="Timer" parent="."]
