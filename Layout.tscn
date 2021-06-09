@@ -29,6 +29,12 @@ tracks/0/keys = {
 "values": [ 0, 1, 0, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ]
 }
 
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.121569, 0.827451, 0.854902, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.121569, 0.827451, 0.854902, 1 )
+
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.121569, 0.827451, 0.854902, 1 )
 
@@ -42,12 +48,6 @@ border_width_top = 8
 border_width_right = 8
 border_width_bottom = 8
 border_color = Color( 0.988235, 0.0588235, 0.0588235, 1 )
-
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.121569, 0.827451, 0.854902, 1 )
-
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0.121569, 0.827451, 0.854902, 1 )
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.121569, 0.827451, 0.854902, 1 )
@@ -70,10 +70,10 @@ __meta__ = {
 [node name="GameTimer" type="Timer" parent="."]
 pause_mode = 1
 script = ExtResource( 5 )
-count = 5
+count = 180
 
 [node name="Hourglass" type="Sprite" parent="."]
-position = Vector2( -169, 555 )
+position = Vector2( -157, 79.0001 )
 scale = Vector2( 2.90476, 2.2381 )
 texture = ExtResource( 10 )
 hframes = 15
@@ -94,75 +94,32 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DetectionBox" type="HBoxContainer" parent="HUDContainer"]
+[node name="TimeBox" type="HBoxContainer" parent="HUDContainer"]
+margin_left = 20.0
 margin_right = 404.0
 margin_bottom = 100.0
+alignment = 1
 
-[node name="StatusLbl" type="Label" parent="HUDContainer/DetectionBox"]
-margin_top = 5.0
-margin_right = 200.0
-margin_bottom = 95.0
-rect_min_size = Vector2( 200, 90 )
+[node name="TimeLbl" type="Label" parent="HUDContainer/TimeBox"]
+margin_left = 117.0
+margin_right = 267.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 150, 100 )
+size_flags_horizontal = 0
 theme = ExtResource( 4 )
-custom_styles/normal = SubResource( 1 )
-text = "Safe
-"
+custom_styles/normal = SubResource( 5 )
+text = "180"
 align = 1
-valign = 2
+valign = 1
 autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DetectionMeter" type="ProgressBar" parent="HUDContainer/DetectionBox"]
-margin_left = 204.0
-margin_right = 404.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 200, 100 )
-size_flags_vertical = 1
-theme = ExtResource( 4 )
-custom_styles/fg = SubResource( 2 )
-custom_styles/bg = SubResource( 7 )
-step = 0.5
-percent_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TamperBox" type="HBoxContainer" parent="HUDContainer"]
-margin_top = 107.0
-margin_right = 404.0
-margin_bottom = 207.0
-
-[node name="TamperLbl" type="Label" parent="HUDContainer/TamperBox"]
-margin_top = 5.0
-margin_right = 200.0
-margin_bottom = 95.0
-rect_min_size = Vector2( 200, 90 )
-theme = ExtResource( 4 )
-custom_styles/normal = SubResource( 1 )
-text = "Document Tampered:"
-autowrap = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TamperMeter" type="ProgressBar" parent="HUDContainer/TamperBox"]
-margin_left = 204.0
-margin_right = 404.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 200, 100 )
-size_flags_vertical = 1
-theme = ExtResource( 4 )
-step = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="QTEBox" type="HBoxContainer" parent="HUDContainer"]
-margin_top = 214.0
+margin_top = 107.0
 margin_right = 404.0
-margin_bottom = 314.0
+margin_bottom = 207.0
 
 [node name="QTELbl" type="Label" parent="HUDContainer/QTEBox"]
 margin_top = 5.0
@@ -190,24 +147,68 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TimeBox" type="HBoxContainer" parent="HUDContainer"]
+[node name="TamperBox" type="HBoxContainer" parent="HUDContainer"]
+margin_top = 214.0
+margin_right = 404.0
+margin_bottom = 314.0
+
+[node name="TamperLbl" type="Label" parent="HUDContainer/TamperBox"]
+margin_top = 5.0
+margin_right = 200.0
+margin_bottom = 95.0
+rect_min_size = Vector2( 200, 90 )
+theme = ExtResource( 4 )
+custom_styles/normal = SubResource( 1 )
+text = "Document Tampered:"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TamperMeter" type="ProgressBar" parent="HUDContainer/TamperBox"]
+margin_left = 204.0
+margin_right = 404.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 200, 100 )
+size_flags_vertical = 1
+theme = ExtResource( 4 )
+step = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DetectionBox" type="HBoxContainer" parent="HUDContainer"]
 margin_top = 321.0
 margin_right = 404.0
 margin_bottom = 421.0
-alignment = 1
 
-[node name="TimeLbl" type="Label" parent="HUDContainer/TimeBox"]
-margin_left = 127.0
-margin_right = 277.0
-margin_bottom = 100.0
-rect_min_size = Vector2( 150, 100 )
-size_flags_horizontal = 0
+[node name="StatusLbl" type="Label" parent="HUDContainer/DetectionBox"]
+margin_top = 5.0
+margin_right = 200.0
+margin_bottom = 95.0
+rect_min_size = Vector2( 200, 90 )
 theme = ExtResource( 4 )
-custom_styles/normal = SubResource( 5 )
-text = "180"
+custom_styles/normal = SubResource( 1 )
+text = "Safe
+"
 align = 1
 valign = 1
 autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DetectionMeter" type="ProgressBar" parent="HUDContainer/DetectionBox"]
+margin_left = 204.0
+margin_right = 404.0
+margin_bottom = 100.0
+rect_min_size = Vector2( 200, 100 )
+size_flags_vertical = 1
+theme = ExtResource( 4 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 7 )
+step = 0.5
+percent_visible = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
