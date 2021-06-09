@@ -23,21 +23,24 @@ func display_results(results):
 	var sub_result_txt
 	if chars_left != 0 and not spotted:
 		$ResultSound.stream = crowd_boo
+		$ResultSound.volume_db = -5
 		result_txt = "You lost!"
 		sub_result_txt = "You failed to finish before the deadline! Nobody liked what you had written..."
 	elif ratio < target and not spotted:
 		$ResultSound.stream = crowd_boo
+		$ResultSound.volume_db = -5
 		result_txt = "You lost!"
 		sub_result_txt = "You lost to your rival. You didn't cheat enough..."
 	elif spotted:
 		$ResultSound.stream = crowd_boo
+		$ResultSound.volume_db = -5
 		result_txt = "You lost!"
 		sub_result_txt = "Your rival spotted you tampering and ratted you out! You weren't sneaky enough..."
 	else:
 		$ResultSound.stream = crowd_clap
+		$ResultSound.volume_db = 0
 		result_txt = "You won the contest!"
 		sub_result_txt = "You managed to submit your piece on time! \nAs your rival's piece was terrible, you won the contest.\nCongratulations!"
-	
 	
 	$ResultSound.play()
 	$LabelBox/ResultLbl.text = result_txt
