@@ -9,9 +9,10 @@ var chars_left
 
 onready var tamper_meter = $HUDContainer/TamperBox/TamperMeter
 onready var qte_meter = $HUDContainer/QTEBox/QTEMeter
-onready var time_meter = $HUDContainer/TimeBox/TimeMeter
-onready var score_lbl = $HUDContainer/ScoreLbl
-onready var doc_switch = $HUDContainer/DocSwitch
+#onready var time_meter = $HUDContainer/TimeBox/TimeMeter
+onready var time_lbl = $HUDContainer/TimeBox/TimeLbl
+onready var score_lbl = $HUDContainer/GameInfo/ScoreLbl
+onready var doc_switch = $HUDContainer/GameInfo/DocSwitch
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,12 +24,14 @@ func _ready():
 	tamper_meter.value = ratio_tampered
 	qte_meter.value = 0
 	qte_meter.max_value = chars_left
-	time_meter.value = $GameTimer.count
-	time_meter.max_value = time_meter.value
-	score_lbl.text = "Score:\n" + str(score)
+	#time_meter.value = $GameTimer.count
+	time_lbl.text = str($GameTimer.count)
+	#time_meter.max_value = time_meter.value
+	score_lbl.text = "Score: " + str(score)
 	doc_switch.text = "Switch to Writing Mode"
 	$GameTimer.start()
 	$Music.play()
+	$Hourglass/AnimationPlayer.play("Play")
 
 
 func _on_DocSwitch_pressed():
